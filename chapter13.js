@@ -28,6 +28,7 @@ function buildTable(data) {
       });
       table.appendChild(row);
   }
+  return table;
 }
 
 
