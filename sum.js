@@ -46,7 +46,7 @@ function arrayToList(array){
   for(var i=array.length-1; i>=0; i--){
     list = {value: array[i],rest: list};
   }
-  return list
+  return list;
 }
 function listToArray(list){
   var array = [];
@@ -81,7 +81,7 @@ function deepEqual(object1,object2){
   return property1 === property2;
 }
 //flattening
-arrays.reduce(function(flat, current) {
+return arrays.reduce(function(flat, current) {
   	return flat.concat(current);
 });
 //Mother-child age difference

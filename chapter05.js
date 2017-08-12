@@ -21,7 +21,7 @@ ancestry.forEach(function(person) {
 // Problem 1: Flattening
 function flatten(arrays) {
   // Your code here
-  arrays.reduce(function(flat, current) {
+  return arrays.reduce(function(flat, current) {
   	return flat.concat(current);
 	});
 }
