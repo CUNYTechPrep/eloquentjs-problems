@@ -85,7 +85,7 @@ function nth(list, position) {
 
 function prepend(element, list) {
   // Your code here
-  return {element: element, list: list};
+  return {value: element, rest: list};
 }
 
 // Problem 4: Deep comparison
