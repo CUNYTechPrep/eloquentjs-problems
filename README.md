@@ -1,4 +1,4 @@
-# Eloquent JavaScript Problem Tests
+# Eloquent JavaScript Problem Set
 
 This repository contains tests for the problems in chapters 4, 5, and 13 of the [Eloquent JavaScript](http://eloquentjavascript.net/index.html) book. The tests are written using the [Jest](https://facebook.github.io/jest/) testing framework.
 
