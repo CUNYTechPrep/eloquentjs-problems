@@ -1,0 +1,14 @@
+{
+  "name": "eloquentjs-problems",
+  "version": "1.0.0",
+  "description": "Testing and submission instructions for CTP Summer Assignment 2.",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^20.0.4"
+  }
+}
