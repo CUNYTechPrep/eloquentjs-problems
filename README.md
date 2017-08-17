@@ -1,5 +1,7 @@
 # Eloquent JavaScript Problem Set
 
+[![Build Status](https://travis-ci.org/CUNYTechPrep/eloquentjs-problems.svg?branch=master)](https://travis-ci.org/CUNYTechPrep/eloquentjs-problems)
+
 This repository contains tests for the problems in chapters 4, 5, and 13 of the [Eloquent JavaScript](http://eloquentjavascript.net/index.html) book. The tests are written using the [Jest](https://facebook.github.io/jest/) testing framework.
 
 ## Submission Instructions
