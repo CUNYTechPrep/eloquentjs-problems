@@ -8,8 +8,33 @@
 
 
 // Problem 1: Build table
-function buildTable(data) {
-  // Your code here
+function buildTable(data)
+{
+var table = document.createElement("table");
+var fields = Object.keys(data[0]);
+var tablerow = document.createElement("tr");
+fields.forEach(function(field) {
+var tablehead = document.createElement("th");
+tablehead.textContent = field;
+tablerow.appendChild(tablehead);
+});
+table.appendChild(tablerow);
+
+data.forEach(function(info) {
+var row = document.createElement("tr");
+fields.forEach(function(field) {
+var cell = document.createElement("td");
+cell.textContent = info[field];
+if(typeof info[field] == "number")
+{
+  cell.style.textAlign = "right";
+}
+row.appendChild(cell);
+});
+table.appendChild(row);
+});
+
+return table;
 }
 
 
