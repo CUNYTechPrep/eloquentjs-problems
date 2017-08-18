@@ -29,7 +29,7 @@ function buildTable(data) {
     }
 return newtable;
 }
-
+ document.body.appendChild(buildTable(MOUNTAINS)); //table on bottom
 
 // Do not modify below here.
 module.exports = { buildTable };
