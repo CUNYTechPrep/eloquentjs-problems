@@ -17,7 +17,7 @@ describe('Ch.13, Problem 1: Build table', () => {
 
   test('buildTable(data) produced a table', () => {
     expect(table.nodeName).toEqual('TABLE');
-    expect(table.children.length).toEqual(4);
+    expect(table.children.length).toEqual(5);
 
     const row1 = table.children[1];
     expect(row1.nodeName).toEqual('TR');
@@ -25,8 +25,8 @@ describe('Ch.13, Problem 1: Build table', () => {
 
     const cols = row1.children;
     expect(cols[0].nodeName).toEqual('TD');
-    expect(cols[0].textContent).toBe(data[1].name);
-    expect(parseInt(cols[1].textContent)).toBe(data[1].height);
-    expect(cols[2].textContent).toBe(data[1].country);
+    expect(cols[0].textContent).toBe(data[0].name);
+    expect(parseInt(cols[1].textContent)).toBe(data[0].height);
+    expect(cols[2].textContent).toBe(data[0].country);
   });
 });
