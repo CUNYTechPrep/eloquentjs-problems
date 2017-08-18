@@ -9,7 +9,31 @@
 
 // Problem 1: Build table
 function buildTable(data) {
-  // Your code here
+  var table = document.createElement("table")
+  var row = document.createElement("tr");
+  table.appendChild(row);
+
+  var headers = Object.keys(data[0]);
+  headers.forEach(function(header){
+    var node = document.createElement("th");
+    var text = document.createTextNode(header)
+    node.appendChild(text);
+    row.appendChild(node);
+  });
+
+  data.forEach(function(entry){
+    row = document.createElement("tr");
+    table.appendChild(row);
+    headers.forEach(function(column){
+      var node = document.createElement("td");
+      var text = document.createTextNode(entry[column])
+      if (column == "height")
+        node.style.textAlign = 'right';
+      node.appendChild(text);
+      row.appendChild(node);
+    });
+  });
+  return table;
 }
 
 
