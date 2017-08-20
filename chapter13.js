@@ -9,8 +9,30 @@
 
 // Problem 1: Build table
 function buildTable(data) {
-  // Your code here
+    var table = document.createElement("TABLE");
+    var header = Object.keys(data[0]);
+	var row = document.createElement("tr");
+    for(var i = 0; i< header.length; i++){
+      var th = document.createElement("th");
+      var thText = document.createTextNode(header[i]);
+      th.appendChild(thText);
+      row.appendChild(th);
+    }
+    
+    table.appendChild(row);
+    for(var i = 0; i < data.length;i++){
+	  var rowForValues = document.createElement("tr");
+      for(var key in data[i]){
+      	var td = document.createElement("td");
+      	var tdValues = document.createTextNode(data[i][key]);
+      	td.appendChild(tdValues);
+        rowForValues.appendChild(td);
+      }
+      table.appendChild(rowForValues);
+    }
+    return table;
 }
+
 
 
 // Do not modify below here.
