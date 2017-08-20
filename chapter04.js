@@ -18,7 +18,6 @@ function sum(array) {
   let sum = 0;
   array.forEach(element => sum += element);
   return sum;
-  //return array.reduce((a, b) => { return a + b; }, 0);
 }
 
 
