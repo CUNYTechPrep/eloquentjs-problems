@@ -58,27 +58,66 @@ function reverseArrayInPlace(array) {
 }
 
 // Problem 3: A List
-function arrayToList(array) {
-  // Your code here
+function arrayToList(ArrayInput)
+{
+	var Result_LIST = null;
+ 	for(var index = ArrayInput.length-1; index >= 0; index--)
+    {
+      	Result_LIST = {value: ArrayInput[index], rest: Result_LIST};  			    
+    }
+  return Result_LIST;
 }
 
-function listToArray(list) {
-  // Your code here
+function listToArray(ListInput)
+{
+  	if(ListInput === null)
+    	return null;
+	
+  	var Temp_Array = [];
+  	while(ListInput !== null)
+    {
+      Temp_Array.push(ListInput.value);
+      ListInput = ListInput.rest;
+    }
+  return Temp_Array;
 }
 
-function nth(list, position) {
-  // Your code here
+function prepend(Value,Rest)
+{
+  return {value: Value, rest: Rest};
 }
 
-function prepend(element, list) {
-  // Your code here
+function nth(ListInput,Num_Iteration)
+{
+   var counter = 0;
+	while(counter !== Num_Iteration && ListInput !== null)
+    {
+      	ListInput = ListInput.rest;
+     	counter++;      	
+    }
+  return ListInput.value;
 }
 
 // Problem 4: Deep comparison
-function deepEqual(obj1, obj2) {
-  // Your code here
+function deepEqual(FObj,SObj)
+{
+	if(FObj === SObj)return true;
+    
+  if(FObj == null || SObj == null || typeof FObj != "object"|| typeof SObj != "object")return false;
+    
+  var FObjProp = 0; SObjProp = 0;
+  	
+  	for(var index in FObj)
+  		FObjProp++;
+  	for(var index in SObj)
+    { 
+      SObjProp++;
+     
+      if(!(index in FObj) || !deepEqual(FObj[index],SObj[index]))
+        return false; 
+    } 
+  	return FObjProp == SObjProp;
 }
-
 
 // Do not modify below here.
 module.exports = {
