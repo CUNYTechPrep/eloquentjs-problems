@@ -21,6 +21,18 @@ ancestry.forEach(function(person) {
 // Problem 1: Flattening
 function flatten(TableArray)
 {
+
+
+/*
+ // The Shortened Form for this function is:
+  function flatten(TableArray)
+  {
+    return TableArray.reduce(function(a,b){ return a.concat(b);},[]);
+  }
+ // 
+*/ 
+
+//The following is detailed form of how it should be done without using any built-in funciton such as reduce.
   var HighOrderArray = [];
   	
   for(var index in TableArray)
@@ -28,14 +40,27 @@ function flatten(TableArray)
 	for(var tableIndex in TableArray[index])
       HighOrderArray.push(TableArray[index][tableIndex]);
   }
-	return HighOrderArray;
+  return HighOrderArray;
+
 }
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
-function averageMomChildAgeDiff() {
-  // Your code here
+function averageMomChildAgeDiff(person) { 
+  return ancestry.filter(function(person)
+  {
+    return byName[person.mother] != null;
+  }).map(function(person)
+  {
+    return person.born - byName[person.mother].born;
+  });
+
+  
+  if(byName[person.mother] != null)
+      return person.born - byName[person.mother].born;
+  return false;
 }
+console.log(averageMomChildAgeDiff());
 
 // Problem 3: Historical life expectancy
 /* This must return the object/map with centuries as keys and average age
