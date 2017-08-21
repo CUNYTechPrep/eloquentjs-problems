@@ -21,12 +21,24 @@ ancestry.forEach(function(person) {
 // Problem 1: Flattening
 function flatten(arrays) {
   // Your code here
+  var hasKnownMother = ancestry.filter(function(person){
+  return byName[person.mother] != null;
+}).map(function(person){
+  return person.born - byName[person.mother].born
+});
+  console.log(average(hasKnownMother));
 }
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
 function averageMomChildAgeDiff() {
   // Your code here
+  var hasKnownMother = ancestry.filter(function(person){
+  return byName[person.mother] != null;
+}).map(function(person){
+  return person.born - byName[person.mother].born
+});
+  //average(hasKnownMother));
 }
 
 // Problem 3: Historical life expectancy
@@ -35,6 +47,30 @@ function averageMomChildAgeDiff() {
  */
 function averageAgeByCentury() {
   // Your code here
+  function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+// Your code here.
+function time (arr) {
+  var numbers = [];
+  arr.map(function (person) {
+    var century = Math.ceil(person.died / 100);
+    var age = person.died - person.born;
+    if (!(century in numbers)) {
+      numbers[century] = [age];
+       } else {
+         numbers[century].push(age);
+        }
+    //centuries[century].push(age);
+    });
+	
+   for (var x in numbers) {
+     console.log(x + ': ' + average(numbers[x]));
+    }
+};
+time(ancestry);
 }
 
 
