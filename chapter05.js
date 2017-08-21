@@ -19,8 +19,16 @@ ancestry.forEach(function(person) {
 
 
 // Problem 1: Flattening
-function flatten(arrays) {
-  // Your code here
+function flatten(TableArray)
+{
+  var HighOrderArray = [];
+  	
+  for(var index in TableArray)
+  {
+	for(var tableIndex in TableArray[index])
+      HighOrderArray.push(TableArray[index][tableIndex]);
+  }
+	return HighOrderArray;
 }
 
 // Problem 2: Mother-child age difference

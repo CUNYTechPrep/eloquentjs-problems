@@ -101,22 +101,26 @@ function nth(ListInput,Num_Iteration)
 // Problem 4: Deep comparison
 function deepEqual(FObj,SObj)
 {
-	if(FObj === SObj)return true;
+	if(FObj === SObj) return true;
     
-  if(FObj == null || SObj == null || typeof FObj != "object"|| typeof SObj != "object")return false;
+  if(FObj == null || typeof FObj !=  typeof SObj ||
+     SObj == null )
+  return false;
     
   var FObjProp = 0; SObjProp = 0;
   	
-  	for(var index in FObj)
-  		FObjProp++;
-  	for(var index in SObj)
+  	for(var prop in FObj)
+      FObjProp+=1;
+    
+
+  	for(var prop in SObj)
     { 
-      SObjProp++;
-     
-      if(!(index in FObj) || !deepEqual(FObj[index],SObj[index]))
+      SObjProp+=1;    
+      if(!(prop in FObj) || !deepEqual(FObj[prop],SObj[prop]))
         return false; 
     } 
-  	return FObjProp == SObjProp;
+  
+    return FObjProp == SObjProp;
 }
 
 // Do not modify below here.
