@@ -9,9 +9,27 @@
 
 // Problem 1: Build table
 function buildTable(data) {
-  // Your code here
-}
-
-
-// Do not modify below here.
+  let headers = Object.keys(data[0]);                                                                        
+  const table = document.createElement("table");                                                           
+  let trHeaders = document.createElement("tr");                                                          
+  for (let i = 0; i < headers.length; i++) {                                                                
+    let headerTitle = document.createTextNode(headers[i]);                                                     
+    let th = document.createElement("th");                                                               
+    th.appendChild(headerTitle);                                                                        
+    trHeaders.appendChild(th);                                                                           
+  }                                                                                                      
+  table.appendChild(trHeaders);                                                                          
+  for (let j = 0; j < data.length; j++) {                                                                
+      let row = data[j];                                                                                 
+      let trBody = document.createElement("tr");                                                             
+      for (let j = 0; j < headers.length; j++) {                                                            
+          var item = document.createTextNode(row[headers[j]]); 
+          var td = document.createElement("td");                                                         
+          td.appendChild(item);                                                                   
+          trBody.appendChild(td);                                                                            
+      }                                                                                                  
+      table.appendChild(trBody);                                                                             
+    }                                                                                                    
+  return table;  
+  }
 module.exports = { buildTable };
