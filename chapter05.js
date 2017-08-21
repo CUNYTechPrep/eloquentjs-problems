@@ -21,7 +21,7 @@ ancestry.forEach(function(person) {
 // Problem 1: Flattening
 function flatten(arrays) {
   // Your code here
-  console.log(arrays.reduce(function(a, b) {
+  return (arrays.reduce(function(a, b) {
 	return a.concat(b);
   }));
 }
@@ -30,13 +30,6 @@ function flatten(arrays) {
 /* This must return the average age difference instead of printing it */
 function averageMomChildAgeDiff() {
 	// Your code here
-	var ancestry = JSON.parse(ANCESTRY_FILE); 
-
-	function average(array) {
-	  function plus(a, b) { return a + b; }
-	  return array.reduce(plus) / array.length;
-	}
-
 	var byName = {};
 	ancestry.forEach(function(person) {
 	  byName[person.name] = person;
@@ -79,7 +72,6 @@ function averageMomChildAgeDiff() {
  */
 function averageAgeByCentury() {
   	// Your code here
-  	var ancestry = JSON.parse(ANCESTRY_FILE);
 	var byCentury = {};
 	// Creating smaller groups(derived arrays)
 	ancestry.forEach(function(person) {
@@ -96,29 +88,31 @@ function averageAgeByCentury() {
 	}
 
 	for (var century in byCentury) {
-		console.log(century + ": " + Math.round(average(byCentury[century]) * 10) / 10);
+		byCentury[century] = average(byCentury[century]);
 	}
 
+	return byCentury;
 	// -------------------
-	function groupBy(array, action) {
-		var groups = {};
-		var length = array.length;
-		// Creating smaller groups(derived arrays)
-		for (var i = 0; i < length; ++i) {
-			var category = action(array[i]);
-			if ((category in groups) === false) groups[category] = [];
-	    groups[category].push(array[i]);
-		}
-		return groups;
-	}
+	// FOR BONUS POINTS...
+	// function groupBy(array, action) {
+	// 	var groups = {};
+	// 	var length = array.length;
+	// 	// Creating smaller groups(derived arrays)
+	// 	for (var i = 0; i < length; ++i) {
+	// 		var category = action(array[i]);
+	// 		if ((category in groups) === false) groups[category] = [];
+	//     groups[category].push(array[i]);
+	// 	}
+	// 	return groups;
+	// }
 
-	var death = ancestry.map(function(person) {
-		return person.died;
-	});
+	// var death = ancestry.map(function(person) {
+	// 	return person.died;
+	// });
 
-	return (groupBy(death, function(item){  // grouping by century of death
-		return Math.ceil(item / 100);
-	}));
+	// return (groupBy(death, function(item){  // grouping by century of death
+	// 	return Math.ceil(item / 100);
+	// }));
 }
 
 

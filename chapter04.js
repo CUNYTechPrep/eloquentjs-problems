@@ -69,14 +69,23 @@ function reverseArrayInPlace(input_arr) {
 }
 
 // Problem 3: A List
+function prepend(new_node_val, input_list) {
+  // Your code here
+  var list = {
+    rest: input_list,
+    value: new_node_val
+  }
+  return list;
+}
+
 function arrayToList(array) {
   // Your code here
-  length = array.length;
-  if (length == 0) return null;
-  list = { rest: null, 
+  var length = array.length;
+  // if (length == 0) return null;
+  var list = { rest: null, 
     value: array[length - 1]
   }
-  for (var i = length - 2; i >= 0; --i) {
+  for (var i = length - 2; i >= 0; i--) {
     list = prepend(array[i], list);
   }
   return list;
@@ -98,14 +107,7 @@ function nth(input_list, index) {
   else return input_list.value;
 }
 
-function prepend(new_node_val, input_list) {
-  // Your code here
-  var list = {
-    rest: input_list,
-    value: new_node_val
-  }
-  return list;
-}
+
 
 // Problem 4: Deep comparison
 function deepEqual(val1, val2) {
