@@ -9,11 +9,26 @@
 
 // Problem 1: The sum of a range
 function range(start, end, step=1) {
-  // Your code here
+  array = [];
+  if (start < end) {
+    for (i = start; i <= end; i+=step) { 
+      array.push(i);
+    } 
+  }
+  if (start > end) {
+    for (i = start; i >= end; i+=step) { 
+      array.push(i);
+    } 
+  }
+  return array;
 }
 
 function sum(array) {
-  // Your code here
+  num = 0;
+  for (i = 0; i < array.length; i++) {
+    num += array[i];
+  }
+  return num;
 }
 
 // Problem 2: Reversing an Array
