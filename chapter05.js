@@ -46,7 +46,7 @@ function flatten(TableArray)
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
-function averageMomChildAgeDiff(person) { 
+function averageMomChildAgeDiff() { 
   return ancestry.filter(function(person)
   {
     return byName[person.mother] != null;
@@ -54,13 +54,7 @@ function averageMomChildAgeDiff(person) {
   {
     return person.born - byName[person.mother].born;
   });
-
-  
-  if(byName[person.mother] != null)
-      return person.born - byName[person.mother].born;
-  return false;
 }
-console.log(averageMomChildAgeDiff());
 
 // Problem 3: Historical life expectancy
 /* This must return the object/map with centuries as keys and average age
