@@ -89,7 +89,29 @@ function prepend(element, list) {
 
 // Problem 4: Deep comparison
 function deepEqual(obj1, obj2) {
-  // Your code here
+    //Check if identical
+    if (obj1 === obj2) {
+        return true;
+    }
+
+    //Check type and nulls
+    if (obj1 == null || obj2 == null || typeof(obj1) != "object" || typeof(obj2) != "object") {
+        return false;
+    }
+
+    //Check length
+    if (Object.keys(obj1).length != Object.keys(obj2).length) {
+        return false;
+    }
+    //Deep comparison
+    for(item in obj1) {
+        if (obj2.hasOwnProperty(item)) {
+            if ( !(deepEqual(obj1[item], obj2[item]))) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 
