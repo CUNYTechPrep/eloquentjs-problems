@@ -9,8 +9,29 @@
 
 // Problem 1: Build table
 function buildTable(data) {
-  // Your code here
+		let headerData = Object.keys(data[0]);
+		let table = document.createElement('table');
+		let headRow = document.createElement('tr');
+		headerData.forEach(header => {
+			let ele = document.createElement('th');
+			ele.textContent = header;
+			headRow.appendChild(ele)
+		})
+		table.appendChild(headRow);
+
+		data.forEach(obj => {
+			let row = document.createElement('tr');
+			for(prop in obj) {
+				let ele = document.createElement('td');
+				ele.textContent = obj[prop]
+				row.appendChild(ele)
+			}
+			table.appendChild(row)
+		})
+
+		return table;
 }
+
 
 
 // Do not modify below here.
