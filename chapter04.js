@@ -9,37 +9,82 @@
 
 // Problem 1: The sum of a range
 function range(start, end, step=1) {
-  // Your code here
+    if (step == 0) {
+        step = 1;
+    }
+    var arr = [];
+    if (step >=1) {
+        for(var i=start; i<=end; i+=step)
+            arr.push(i);
+    }
+    else {
+        for(var i=start; i>=end; i+=step)
+            arr.push(i);
+    }
+    return arr;
 }
 
 function sum(array) {
-  // Your code here
+    var sum = 0;
+    for(var i=0; i<array.length; i++)
+        sum += array[i]
+    return sum;
 }
 
 // Problem 2: Reversing an Array
 function reverseArray(array) {
-  // Your code here
+    var reversed = [];
+    var last = array.length - 1
+    for(var i = last; i >= 0; i--) { 
+        reversed.push(array[i]);
+    }
+    return reversed;
 }
 
 function reverseArrayInPlace(array) {
-  // Your code here
+    var mid = array.length / 2;
+    for(var i=0; i<=mid; i++){
+        var temp = array[i];
+        var opp_index = array.length-1-i;
+        array[i] = array[opp_index];
+        array[opp_index] = temp;
+    }
+    return array;
 }
 
 // Problem 3: A List
 function arrayToList(array) {
-  // Your code here
+    var list = null;
+    for(var i=array.length-1; i>=0; i--){
+        list = prepend(array[i], list)
+    }
+    return list;
 }
 
 function listToArray(list) {
-  // Your code here
+    var arr = [];
+    for(var node=list; node; node=node.rest) {
+        arr.push(node.value);
+    }
+    return arr;
 }
 
 function nth(list, position) {
-  // Your code here
+    var count = 0;
+    for(var node=list; node; node=node.rest) {
+        if(count == position)
+            return node.value;
+        count ++;
+    }
+    return undefined;
 }
 
 function prepend(element, list) {
-  // Your code here
+    var new_list = {
+        'value': element,
+        'rest': list
+    }
+    return new_list;
 }
 
 // Problem 4: Deep comparison
