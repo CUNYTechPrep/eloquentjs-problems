@@ -99,8 +99,8 @@ function prepend(element, list)
 // Problem 4: Deep comparison
 function deepEqual(a, b) 
 {
-  let aProperties = 0 
-  let bProperties = 0
+  let propA = 0 
+  let propB = 0
   
   if (a != null || b != null)
   {
@@ -108,12 +108,12 @@ function deepEqual(a, b)
     {
       for (let prop in a)
       {
-        aProperties++
+        propA++
       }
 
       for (let prop in b) 
       {
-        bProperties++
+        propB++
         if ((prop in a) == false || deepEqual(a[prop], b[prop]) == false)
         {
           return false
@@ -127,7 +127,7 @@ function deepEqual(a, b)
       return false
     }
 
-  return aProperties == bProperties
+  return propA == propB
 }
 
 
