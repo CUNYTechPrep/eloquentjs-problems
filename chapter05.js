@@ -59,8 +59,6 @@ function averageAgeByCentury() {
   // Your code here 
 var object = {};
 
-
-
 ancestry.forEach(function(person){
 
     var age = person.died - person.born;
@@ -81,14 +79,13 @@ ancestry.forEach(function(person){
 
     }
 
-});
-
-for(i in object){
-    	console.log(average(object[i]));
-    }
-
-    
-  
+	});
+	
+	for(i in object){
+		object[i]= average(object[i]);
+	}
+		
+	return object;
 }
 
 // Do not modify below here.
