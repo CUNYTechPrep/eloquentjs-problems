@@ -8,43 +8,126 @@
 
 
 // Problem 1: The sum of a range
-function range(start, end, step=1) {
-  // Your code here
+function range(start, end, step = 1)
+{
+  let tempArray = []
+  if (step > 0)
+  {
+    for(i = start; i <= end; i+=step)
+    {
+      tempArray.push(i)
+    }
+  }
+  else
+  {
+    for(i = start; i >= end; i+=step)
+    {
+      tempArray.push(i)
+    }
+  }
+  return tempArray
 }
 
-function sum(array) {
-  // Your code here
+function sum(nums)
+{
+  sum = 0
+  for(i = 0; i < nums.length; i++)
+  {
+    sum += nums[i]
+  }
+  return sum
 }
 
 // Problem 2: Reversing an Array
-function reverseArray(array) {
-  // Your code here
+function reverseArray(original)
+{
+  newArray = []
+  for(i = original.length - 1; i >= 0; i--)
+  {
+    newArray.push(original[i])
+  }
+  return newArray
 }
 
-function reverseArrayInPlace(array) {
-  // Your code here
+function reverseArrayInPlace(original)
+{
+  temp = null
+  for(i = 0; i <= Math.floor(original.length/2); i++)
+  {
+    temp = original[i]
+    original[i] = original[original.length - 1 - i]
+    original[original.length - 1 - i] = temp
+  }
+  return original
 }
 
 // Problem 3: A List
-function arrayToList(array) {
-  // Your code here
+function arrayToList(arr)
+{
+  list = null
+  for(i = arr.length - 1; i >= 0; i--)
+  {
+    list = {value: arr[i], rest: list}
+  }
+  return list
 }
 
-function listToArray(list) {
-  // Your code here
+
+function listToArray(list)
+{
+  arr = []
+  for (let node = list; node; node = node.rest) 
+  {
+    arr.push(node.value)
+  }
+  return arr
 }
 
-function nth(list, position) {
-  // Your code here
+function nth(list, num)
+{
+  if (num == 0)
+    return list.value
+  else
+    return nth(list.rest, num - 1)
 }
 
-function prepend(element, list) {
-  // Your code here
+function prepend(element, list) 
+{
+  return {value: element, rest: list}
 }
 
 // Problem 4: Deep comparison
-function deepEqual(obj1, obj2) {
-  // Your code here
+function deepEqual(a, b) 
+{
+  let aProperties = 0 
+  let bProperties = 0
+  
+  if (a != null || b != null)
+  {
+    if (a != b)
+    {
+      for (let prop in a)
+      {
+        aProperties++
+      }
+
+      for (let prop in b) 
+      {
+        bProperties++
+        if ((prop in a) == false || deepEqual(a[prop], b[prop]) == false)
+        {
+          return false
+        }
+      }
+    }
+  }
+
+  else
+    {
+      return false
+    }
+
+  return aProperties == bProperties
 }
 
 
