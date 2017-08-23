@@ -30,14 +30,14 @@ function buildTable(data) {
       temp.appendChild(document.createTextNode(text));
       // Right align
       if(typeof text == 'number'){
-        //temp.style.textAlign = "right";
+        temp.style.textAlign = "right";
       }
       row.appendChild(temp);
     }
     table.appendChild(row);
   }
 
-  // Right align
+  // Right align after the fact just for practice
   /*
   let entries = table.getElementsByTagName('td');
   for(let i=0; i<entries.length; i++){
