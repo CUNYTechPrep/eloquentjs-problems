@@ -21,12 +21,33 @@ ancestry.forEach(function(person) {
 // Problem 1: Flattening
 function flatten(arrays) {
   // Your code here
+let result = arrays.reduce(function(flat, current) {
+  return flat.concat(current);
+}, []);
+return result;
 }
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
 function averageMomChildAgeDiff() {
   // Your code here
+  function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+var byName = {};
+ancestry.forEach(function(person) {
+  byName[person.name] = person;
+});
+
+var differences = ancestry.filter(function(person) {
+  return byName[person.mother] != null;
+}).map(function(person) {
+  return person.born - byName[person.mother].born;
+});
+return average(differences);
+
 }
 
 // Problem 3: Historical life expectancy
@@ -35,6 +56,35 @@ function averageMomChildAgeDiff() {
  */
 function averageAgeByCentury() {
   // Your code here
+  function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+function groupBy(array, groupOf) {
+  var groups = {};
+  array.forEach(function(element) {
+    var groupName = groupOf(element);
+    if (groupName in groups)
+      groups[groupName].push(element);
+    else
+      groups[groupName] = [element];
+  });
+  return groups;
+}
+
+var byCentury = groupBy(ancestry, function(person) {
+  return Math.ceil(person.died / 100);
+});
+var result={};
+for (var century in byCentury) {
+  var ages = byCentury[century].map(function(person) {
+    return person.died - person.born;
+  });
+result[century]= average(ages);
+  
+}
+return result;
 }
 
 
