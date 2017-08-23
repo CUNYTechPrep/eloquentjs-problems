@@ -30,9 +30,7 @@ function flatten(arrays) {
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
 function averageMomChildAgeDiff() {
-  // Your code here
-  var ancestry = JSON.parse(ancestry);
-  
+  // Your code here  
   var hasKnownMother =  ancestry.filter(function(person) {
     return byName[person.mother] != null 
   });

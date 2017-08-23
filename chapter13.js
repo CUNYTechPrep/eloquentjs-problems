@@ -17,8 +17,9 @@ function buildTable(data) {
   headers.forEach(function(head) {
     let header = document.createElement('th');
     header.appendChild(document.createTextNode(head));
-    table.appendChild(header);
+    headerRow.appendChild(header);
   });
+  table.appendChild(headerRow);
 
   data.forEach(function(mountain) {
     let newRow = document.createElement('tr');
@@ -26,15 +27,15 @@ function buildTable(data) {
     let name = document.createElement('td');
     name.appendChild(document.createTextNode(mountain['name']));
 
-    let country = document.createElement('td');
-    country.appendChild(document.createTextNode(mountain['country']));
-
     let height = document.createElement('td');
     height.appendChild(document.createTextNode(mountain['height']));
 
+    let country = document.createElement('td');
+    country.appendChild(document.createTextNode(mountain['country']));
+
     newRow.appendChild(name);
-    newRow.appendChild(country);
     newRow.appendChild(height);
+    newRow.appendChild(country);
 
     table.appendChild(newRow);
   });
