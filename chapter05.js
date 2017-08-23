@@ -37,51 +37,9 @@ function averageMomChildAgeDiff() {
 }
 
 // Problem 3: Historical life expectancy
-/* This must return the object/map with centuries as keys and average age
-    for the century as the value
- */
-/* const personInfo = [];
 
-ancestry.forEach(function(person) {
-  const info = {};
-  info["name"] = person.name;
-  info["centuryOfDeath"] = Math.ceil(person.died/100);
-  info["age"]= person.died - person.born;
-  personInfo.push(info);
-});
-
-const centuries = {};
-personInfo.forEach(function(person) {
-  if(!centuries[person.centuryOfDeath]) {
-    centuries[person.centuryOfDeath] = [];
-  }
-
-  centuries[person.centuryOfDeath].push(person.age);
-});
-*/
 function averageAgeByCentury() {
-
-  const personInfo = [];
-
-  ancestry.forEach(function(person) {
-    const info = {};
-    info["name"] = person.name;
-    info["centuryOfDeath"] = Math.ceil(person.died/100);
-    info["age"]= person.died - person.born;
-    personInfo.push(info);
-  });
-
-  const centuries = {};
-  personInfo.forEach(function(person) {
-    if(!centuries[person.centuryOfDeath]) {
-      centuries[person.centuryOfDeath] = [];
-    }
-
-    centuries[person.centuryOfDeath].push(person.age);
-  });
-
-  for(key in centuries)
-    console.log(key + ": " + average(centuries[key]));
+//Life has been rather chaotic lately. Will try this again later. 
 
 }
 
