@@ -17,27 +17,32 @@ ancestry.forEach(function(person) {
   byName[person.name] = person;
 });
 
+const haveMother = function(person) {
+  return person.mother in byName;
+};
 
 // Problem 1: Flattening
 function flatten(arrays) {
   // Your code here
+  return arrays.reduce((acc, cur)=>acc.concat(cur), []);
 }
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
+function ageDiff(person) {
+  return person.born - byName[person.mother].born;
+}
 function averageMomChildAgeDiff() {
-  // Your code here
+  return average(ancestry.filter(haveMother).map(ageDiff));
 }
 
 // Problem 3: Historical life expectancy
-/* This must return the object/map with centuries as keys and average age
-    for the century as the value
- */
+
 function averageAgeByCentury() {
-  // Your code here
+//Life has been rather chaotic lately. Will try this again later. 
+
 }
 
 
 // Do not modify below here.
 module.exports = { flatten, averageMomChildAgeDiff, averageAgeByCentury };
-
