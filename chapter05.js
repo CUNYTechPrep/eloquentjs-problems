@@ -38,12 +38,12 @@ function averageMomChildAgeDiff() {
   var hasKnownMother = ancestry.filter(function(person) {
     return byName[person.mother] != null;
   });
-
+  // Compute AgeDifferences
   var ageDifference = hasKnownMother.map(function(person) {
     return person.born - byName[person.mother].born;
   });
 
-  console.log(averageMomChildAgeDiff(ageDifference));
+  return (averageMomChildAgeDiff(ageDifference));
 }
 
 // Problem 3: Historical life expectancy
@@ -52,23 +52,24 @@ function averageMomChildAgeDiff() {
  */
 function averageAgeByCentury() {
   // Your code here
-  var centuries = {};
   ancestry.forEach(function(person){
-    if (centuries[Math.ceil(person.died / 100)] != null) {
-      centuries[Math.ceil(person
-      .died / 100)].push(person.died - person.born);
+    // A person is assigned to a century by taking their year of death, dividing it by 100, and rounding it up, as in Math.ceil(person.died / 100).
+    var century = Math.ceil(person.died / 100);
+
+    if (century in centuries) {
+      centuries[century].push(person.died - person.born);
     } else {
-      centuries[Math.ceil(person.died / 100)] = [];
-      centuries[Math.ceil(person.died / 100)].push(person.died - person.born);
+      centuries[century] = [person.died - person.born];
     }
   }); 
 
   // For in loop to print the average ages for the individuals centuries
-  for (var century in centuries) {
-    centuries[century] = average(centuries[century]);
-  }
+  for (var key in centuries) {
+    centuries[key] = averageAgeByCentury(centuries[key]);
 
-  return centuries;
+    return {name: Math.ceil(person.died/100),
+          value: person.died - person.born};
+  }
 }
 
 
