@@ -44,13 +44,12 @@ function sum(array) {
 // Problem 2: Reversing an Array
 function reverseArray(array) {
   // Your code here
-  var amt_of_swaps = Math.floor(array.length/2);
-  for(var i = 0; i < amt_of_swaps; i++){
-    var temp = array[i];
-    array[i] = array[array.length - (i + 1)];
-    array[array.length - (i + 1)] = temp;
+  var arr = [];
+  var counter = Math.floor(array.length/2);
+  for(var i = array.length - 1; i >= 0; i--){
+    arr.push(array[i]);
   }
-  return array;
+  return arr;
 }
 
 function reverseArrayInPlace(array) {
