@@ -64,36 +64,15 @@ var reverseArrayInPlace = function(myArray) {
 
 // Problem 3: A List
 var arrayToList = function(myArray) {
-    function Node(value) {
-        this.value = value;
-        this.rest = null;
+    var node = null;
+    
+    for (var i = myArray.length - 1; i >= 0; i--) {
+        node = {
+            value: myArray[0],
+            rest: node
+        };
     }
-
-    Node.prototype.add = function(value) {
-        var node = new Node(value);
-        var currentHead = this.rest;
-
-        if (!currentHead) {
-            this.rest = node;
-
-            return node;
-        }
-
-        while (currentHead.rest) {
-            currentHead = currentHead.rest;
-        }
-
-        currentHead.rest = node;
-
-        return node;
-    };
-
-    var node = new Node(myArray[0]);
-
-    for (var i = 1; i < myArray.length; i++) {
-        node.add(myArray[i]);
-    }
-
+    
     return node;
 };
 
@@ -110,33 +89,10 @@ var listToArray = function(myList) {
 };
 
 var prepend = function(element, myList) {
-    function Node(value) {
-        this.value = value;
-        this.rest = null;
-    }
-
-    Node.prototype.add = function(value) {
-        var node = new Node(value);
-        var currentHead = this.rest;
-
-        if (!currentHead) {
-            this.rest = node;
-
-            return node;
-        }
-
-        while (currentHead.rest) {
-            currentHead = currentHead.rest;
-        }
-
-        currentHead.rest = node;
-
-        return node;
+    var node = {
+        value: element,
+        rest: myList
     };
-
-    var node = new Node(element);
-
-    node.add(myList);
 
     return node;
 };
