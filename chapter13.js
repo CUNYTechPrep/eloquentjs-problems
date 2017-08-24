@@ -11,29 +11,28 @@
 function buildTable(data) {
   // Your code here
   var table = document.createElement('table');
-  var row = document.createElement('tr');
-  var header = document.createElement('th');
+  var row = Object.keys(data[0]);
+  var headRow = document.createElement('tr');
 
-  for (var i in data[0]) {
-    header.appendChild(document.createTextNode(i));
-    row.appendChild(header);
-  }
+  row.forEach(function(row) {
+    var element = document.createElement('th');
+    element.textContent =  row;
+    headRow.appendChild(element);
+  });
 
-  table.appendChild(row);
+  table.appendChild(headRow);
 
   // Loop over the key names once to fill in the top row 
   // and then again for each object in the array to construct the data rows.
-  for (var i = 0; i < data.length; ++i) {
-    row = document.createElement('td');
-
-    var cell = document.createElement('td');
-    for (var j in data[i]) {
-      cell.appendChild(document.createTextNode(data[i][j]));
-      row.appendChild(cell);
+  for (var i = 0; i < data.length; i++) {
+      row = document.createElement('tr');
+      for (var key in data[i]) {
+      	var element = document.createElement('td');
+        element.appendChild(document.createTextNode(data[i][key]));
+        row.appendChild(element);
+      }
+      table.appendChild(row);
     }
-
-    table.appendChild(row);
-  }
 
   return table;
 }
