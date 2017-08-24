@@ -9,47 +9,103 @@
 
 // Problem 1: The sum of a range
 function range(start, end, step=1) {
-  // Your code here
+  var arr = [];
+  if (step == null)
+    step = 1;
+
+  if (step > 0) {
+    for (var i = start; i <= end; i += step)
+      arr.push(i);
+  }
+  else {
+    for (var i = start; i >= end; i += step)
+      arr.push(i);
+  }
+  return arr;
 }
 
 function sum(array) {
-  // Your code here
+  var result = 0;
+  for (var i = 0; i < array.length; i++) {
+  result += array[i];
+  }
+  return result;
 }
 
 // Problem 2: Reversing an Array
 function reverseArray(array) {
-  // Your code here
+  var newArray = [];
+  for (var i = array.length-1; i >= 0; i--) {
+    newArray.push(array[i]);
+  }
+  return newArray;
 }
 
 function reverseArrayInPlace(array) {
-  // Your code here
+  var arrayLength = array.length;
+  var midpoint = Math.floor(arrayLength/2);
+  for (var i = 0; i < midpoint; i++) {
+    var temp = array[i];
+    array[i] = array[arrayLength - 1 - i];
+    array[arrayLength - 1 - i] = temp;
+  }
 }
 
 // Problem 3: A List
 function arrayToList(array) {
-  // Your code here
+  var list = null;
+  for (var i = array.length - 1; i >= 0; i--)
+    list = {value: array[i], rest: list};
+  return list;
 }
 
 function listToArray(list) {
-  // Your code here
+  var myArray = [];
+  for (var node = list; node; node = node.rest)
+    myArray.push(node.value);
+  return myArray;
 }
 
 function nth(list, position) {
-  // Your code here
+  if (!list)
+    return undefined;
+  else if (position == 0)
+    return list.value;
+  else
+    return nth(list.rest, position - 1);
 }
 
 function prepend(element, list) {
-  // Your code here
+    return {value: element, rest: list};
 }
 
 // Problem 4: Deep comparison
-function deepEqual(obj1, obj2) {
-  // Your code here
-}
+function deepEqual(a, b) {
+  if (a === b) return true;
+  
+  if (a == null || typeof a != "object" ||
+      b == null || typeof b != "object")
+    return false;
+  
+  var propsInA = 0, propsInB = 0;
 
+  for (var prop in a)
+    propsInA += 1;
+
+  for (var prop in b) {
+    propsInB += 1;
+    if (!(prop in a) || !deepEqual(a[prop], b[prop]))
+      return false;
+  }
+
+  return propsInA == propsInB;
+}
 
 // Do not modify below here.
 module.exports = {
   range, sum, reverseArray, reverseArrayInPlace,
   arrayToList, listToArray, nth, prepend, deepEqual
 };
+
+
+
