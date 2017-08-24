@@ -10,6 +10,24 @@
 // Problem 1: Build table
 function buildTable(data) {
   // Your code here
+    // Your code here.
+  let table = document.createElement('table');
+
+  for(let i=0; i<data.length; i++){
+    let tr = document.createElement('tr');
+    for(let key in data[i]){
+        let txt = document.createTextNode(data[i][key])
+
+        let td = document.createElement('td');
+        if(key=='height') td.setAttribute('class', 'right');
+
+        td.appendChild(txt);
+        tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  
+  return table;
 }
 
 
