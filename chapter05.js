@@ -42,7 +42,21 @@ function averageMomChildAgeDiff() {
     for the century as the value
  */
 function averageAgeByCentury() {
-  // Your code here
+    //assign each person to a century
+    var avgAgeExpectancy = {};
+    var century;
+
+    ancestry.forEach(function(person) {
+      century = Math.ceil(person.died / 100).toString();
+      if(!avgAgeExpectancy.hasOwnProperty(century)) { avgAgeExpectancy[century] = []; }
+      avgAgeExpectancy[century].push(person.died - person.born);
+    });
+
+    for (var cent in avgAgeExpectancy) {
+        avgAgeExpectancy[cent] = average(avgAgeExpectancy[cent]);
+    }
+
+    return avgAgeExpectancy;
 }
 
 
