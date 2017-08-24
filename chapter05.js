@@ -5,9 +5,9 @@
  *    - You may rename the parameters.
  *    - DO NOT modify the number of parameters for each function.
  */
-const ancestry = require('./ancestry');
+  const ancestry = require('./ancestry');
 
-function average(array) {
+  function average(array) {
   function plus(a, b) { return a + b; }
   return array.reduce(plus) / array.length;
 }
@@ -46,23 +46,72 @@ function flatten(TableArray)
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
+function averageFinder(array) {
+  function plus(a, b) 
+  { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
 function averageMomChildAgeDiff() { 
-  return ancestry.filter(function(person)
+  var differences = ancestry.filter(function(person) 
   {
     return byName[person.mother] != null;
-  }).map(function(person)
+  }
+  ).map(function(person) 
   {
     return person.born - byName[person.mother].born;
   });
+
+  return averageFinder (differences);
 }
+
+
 
 // Problem 3: Historical life expectancy
 /* This must return the object/map with centuries as keys and average age
     for the century as the value
  */
-function averageAgeByCentury() {
-  // Your code here
+
+
+function groupBy(array,groupOf)
+{
+  var group = {};
+  
+  array.forEach(function (element)
+  {
+    var groupName = groupOf(element);
+    
+    if(groupName in group)
+      group[groupName].push(element);
+    else
+      group[groupName] = [element];
+    
+  })
+  return group;
 }
+function averageAgeByCentury(century) 
+{
+  var result_averageLifespan={};
+  var age;
+  var InCentury = groupBy(ancestry,function(person)
+  {
+      return Math.ceil(person.died / 100);
+  });
+  for(var century in InCentury)
+  {
+      age = InCentury[century].map(function(person)
+      {
+        return person.died - person.born;
+      });     
+      
+    result_averageLifespan[century] = averageFinder(age);
+      
+  }
+
+  return result_averageLifespan;
+
+}
+
 
 
 // Do not modify below here.

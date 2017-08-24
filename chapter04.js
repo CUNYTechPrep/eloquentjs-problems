@@ -8,8 +8,10 @@
 
 
 // Problem 1: The sum of a range
-function range(start, end, step=1) {
-  var increm = Math.abs(step);
+function range(start, end, step) {
+  var increm = 1;
+  if(step != null)
+     increm= Math.abs(step);
   var total= [];
   if(start < end)
   {
@@ -50,11 +52,12 @@ function reverseArray(array) {
 }
 
 function reverseArrayInPlace(array) {
-  var Result_Array= [];
-  for(var i  = Existing_Array.length - 1; i >= 0; i--)
-     Result_Array.push(Existing_Array[i]);
- 
- return Result_Array;
+  for (var i = 0; i < Math.floor(array.length / 2); i++) {
+    var old = array[i];
+    array[i] = array[array.length - 1 - i];
+    array[array.length - 1 - i] = old;
+  }
+  return array;
 }
 
 // Problem 3: A List

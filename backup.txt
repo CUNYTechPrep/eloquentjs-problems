@@ -1,0 +1,43 @@
+//Chapter 5 Problem 3.
+
+
+function groupBy(array,groupOf)
+{
+  var group = {};
+  
+  array.forEach(function (element)
+  {
+    var groupName = groupOf(element);
+    
+    if(groupName in group)
+      group[groupName].push(element);
+    else
+      group[groupName] = [element];
+    
+  })
+  return group;
+}
+
+function averageAgeByCentury(century) 
+{
+  var result_averageLifespan  =  {};
+  var age;
+  var ByCentury = groupBy(ancestry,function(person)
+  {
+      return Math.ceil(person.died / 100);
+  });
+  for(var century in ByCentury)
+  {
+       age = ByCentury[century].map(function(person)
+      {
+        return person.died - person.born;
+      });     
+      
+      console.log(ByCentury[century]);
+      result_averageLifespan.push(average(age));
+      
+  }
+
+  return result_averageLifespan;
+
+}
