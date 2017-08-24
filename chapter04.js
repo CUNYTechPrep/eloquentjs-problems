@@ -68,7 +68,7 @@ var arrayToList = function(myArray) {
     
     for (var i = myArray.length - 1; i >= 0; i--) {
         node = {
-            value: myArray[0],
+            value: myArray[i],
             rest: node
         };
     }
