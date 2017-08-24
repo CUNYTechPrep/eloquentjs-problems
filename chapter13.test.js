@@ -13,10 +13,15 @@ const data = [
  */
 describe('Ch.13, Problem 1: Build table', () => {
   const buildTable = ch13.buildTable;
-  const table = buildTable(data);
+  let table = buildTable(data);
 
   test('buildTable(data) produced a table', () => {
     expect(table.nodeName).toEqual('TABLE');
+
+    if(table.children.length === 1
+      && table.children[0].nodeName === 'TBODY') {
+      table = table.children[0];
+    }
     expect(table.children.length).toEqual(5);
 
     const row1 = table.children[1];
