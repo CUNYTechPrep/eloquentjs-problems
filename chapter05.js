@@ -19,9 +19,12 @@ ancestry.forEach(function(person) {
 
 
 // Problem 1: Flattening
-var flatten = arrays.reduce(function(a, b) {
-    return a.concat(b);
-}, []);
+var flatten = function(arrays) {
+    return arrays.reduce(function (a,b){
+        return a.concat(b);
+    });
+}
+
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
