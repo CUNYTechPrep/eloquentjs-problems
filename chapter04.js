@@ -11,8 +11,23 @@
 function range(start, end, step=1) {
   // Your code here
   var range_arr = [];
-  for(var i = start; i <= end; i++){
-    range_arr.push(i);
+
+  if(step == 1){
+    for(var i = start; i <= end; i++){
+      range_arr.push(i);
+    }
+  } else {
+    if(start > end){
+      while (start >= end){
+      range_arr.push(start);
+      start = start + step;
+    }
+    } else {
+      while (start <= end){
+      range_arr.push(start);
+      start = start + step;
+      }
+    }
   }
   return range_arr;
 }
