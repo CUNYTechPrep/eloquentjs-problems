@@ -8,8 +8,36 @@
 
 
 // Problem 1: Build table
-function buildTable(data) {
-  // Your code here
+function buildTable(data) 
+{
+    var Frame = document.createElement("TABLE");
+    var Header = document.createElement("tr");
+    var category = Object.keys(data[0]);
+
+    category.forEach(function(catalog)
+    {
+        var col = document.createElement("th")
+        col.textContent = catalog;
+        Header.appendChild(col);
+    });
+    Frame.appendChild(Header);
+
+    data.forEach(function(dataSet)
+    {
+        var NewRow = document.createElement("tr");
+        category.forEach(function(dataCata)
+        {
+          var Newcol = document.createElement("td"); 
+          Newcol.textContent = dataSet[dataCata];
+          NewRow.appendChild(Newcol);
+        });
+
+        Frame.appendChild(NewRow);
+
+    });
+
+    return Frame;
+
 }
 
 
