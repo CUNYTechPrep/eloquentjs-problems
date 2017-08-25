@@ -50,11 +50,15 @@ function reverseArrayInPlace(arr) {
 
 // Problem 3: A List
 function arrayToList(arr) {
-	for(var i = arr.length-1; i >1;i--){
-		var list = {
+  	var list = {};
+    let prevList = null;
+	for(var i = arr.length-1; i >-1;i--){
+		list = {
 			value : arr[i],
-			rest : list
+			rest : prevList
 		};
+        prevList = list;
+      console.log(arr[i]);
 	}
 	return list;
 }
