@@ -10,15 +10,16 @@
 // Problem 1: The sum of a range
 function range(start, end, step=1) {
 	var result = [];
-	if(step === undefined)
-		step = 1;
+	let difference = Math.abs(end - start);
+	arrSize = Math.abs((difference + 1)/step);
+
 	if(start<end){
-		for(var i = 0; i < end - start +1; i++)
+		for(var i = 0; i < arrSize; i++)
 			result[i] = start + (i * step);
 	}
 
 	else if ( start > end){
-		for(var i = 0; i < start - end + 1; i++)
+		for(var i = 0; i < arrSize; i++)
 			result[i] = start + (i * step);
 	}
 	return result;
@@ -36,7 +37,7 @@ function reverseArray(arr) {
  	var revArr = [];
 	for(var i = 0; i < arr.length; i++)
 		revArr[i] = arr[arr.length - i -1];
-	return revArr[i];
+	return revArr;
 }
 
 function reverseArrayInPlace(arr) {
@@ -80,14 +81,29 @@ function nth(list, pos) {
 function prepend(element, list) {
 	var newList = {
 		value: element,
-		rest: lsit
+		rest: list
 	};
 	return newList;
 }
 
 // Problem 4: Deep comparison
 function deepEqual(obj1, obj2) {
-  // Your code here
+   if(typeof obj1 === typeof obj2){
+   	if(typeof obj1 == "object"){
+    	for (var elt in obj1){
+          	/*console.log(elt);
+            console.log(obj1[elt]);
+            console.log(obj2[elt]);*/
+    		return deepEqual(obj1[elt], obj2[elt]);
+    	}
+    }
+  	else if (obj1 === obj2)
+      return true;
+    else
+      return false;
+  }
+  else
+    return false; // Your code here
 }
 
 
