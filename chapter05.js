@@ -45,6 +45,18 @@ function averageMomChildAgeDiff() {
  */
 function averageAgeByCentury() {
   // Your code here
+	var centuries = {};
+	ancestry.forEach(function(person){
+		var century = Math.ceil(person.died/100);
+		if(!(century in centuries)) {
+			centuries[century] = [];
+		}
+		centuries[century].push(person.died - person.born);
+	});
+	for(var i in centuries) {
+		centuries[i] = average(centuries[i]);
+	};
+	return centuries;
 }
 
 
