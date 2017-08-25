@@ -1,10 +1,10 @@
 const ch13 = require('./chapter13');
 
 const data = [
-  { name: "Kilimanjaro", height: 5895, country: "Tanzania" },
-  { name: "Everest", height: 8848, country: "Nepal" },
-  { name: "Mount Fuji", height: 3776, country: "Japan" },
-  { name: "Mont Blanc", height: 4808, country: "Italy/France" },
+  { name: "Kilimanjaro", height: 5895, country: "Tanzania", age: 32 },
+  { name: "Everest", height: 8848, country: "Nepal", age: 21 },
+  { name: "Mount Fuji", height: 3776, country: "Japan", age: 22 },
+  { name: "Mont Blanc", height: 4808, country: "Italy/France" , age: 12},
 ];
 
 /*
@@ -17,11 +17,11 @@ describe('Ch.13, Problem 1: Build table', () => {
 
   test('buildTable(data) produced a table', () => {
     expect(table.nodeName).toEqual('TABLE');
-    expect(table.children.length).toEqual(5);
+    expect(table.children.length).toEqual(data.length + 1);
 
     const row1 = table.children[1];
     expect(row1.nodeName).toEqual('TR');
-    expect(row1.children.length).toEqual(3);
+    expect(row1.children.length).toEqual(Object.keys(data).length);
 
     const cols = row1.children;
     expect(cols[0].nodeName).toEqual('TD');
