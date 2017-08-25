@@ -8,45 +8,123 @@
 
 
 // Problem 1: The sum of a range
-function range(start, end, step=1) {
-  // Your code here
+function range(start, end, step) {
+  var increm = 1;
+  if(step != null)
+     increm= Math.abs(step);
+  var total= [];
+  if(start < end)
+  {
+  
+     for(var i = start; i <=end;i+=increm)
+       total.push(i); 
+  
+      return total;   
+  }
+  else if(end < start)
+  {
+      for(var i = start; i >=end; i-=increm)
+          total.push(i);
+      
+      return total;
+  }
+  else if(end === start)
+      return end;
 }
 
 function sum(array) {
-  // Your code here
+  var result = 0;
+  for(var i = 0;i < array.length;i++)
+      result+= array[i];
+
+  return result;
+
 }
 
 // Problem 2: Reversing an Array
 function reverseArray(array) {
-  // Your code here
+  var GivenArray = array;
+	var Result_Array = [];
+  
+  for(var i = GivenArray.length-1; i >= 0 ;i--)
+  	Result_Array.push(GivenArray[i]);
+	return Result_Array;
 }
 
 function reverseArrayInPlace(array) {
-  // Your code here
+  for (var i = 0; i < Math.floor(array.length / 2); i++) {
+    var old = array[i];
+    array[i] = array[array.length - 1 - i];
+    array[array.length - 1 - i] = old;
+  }
+  return array;
 }
 
 // Problem 3: A List
-function arrayToList(array) {
-  // Your code here
+function arrayToList(ArrayInput)
+{
+	var Result_LIST = null;
+ 	for(var index = ArrayInput.length-1; index >= 0; index--)
+    {
+      	Result_LIST = {value: ArrayInput[index], rest: Result_LIST};  			    
+    }
+  return Result_LIST;
 }
 
-function listToArray(list) {
-  // Your code here
+function listToArray(ListInput)
+{
+  	if(ListInput === null)
+    	return null;
+	
+  	var Temp_Array = [];
+  	while(ListInput !== null)
+    {
+      Temp_Array.push(ListInput.value);
+      ListInput = ListInput.rest;
+    }
+  return Temp_Array;
 }
 
-function nth(list, position) {
-  // Your code here
+function prepend(Value,Rest)
+{
+  return {value: Value, rest: Rest};
 }
 
-function prepend(element, list) {
-  // Your code here
+function nth(ListInput,Num_Iteration)
+{
+   var counter = 0;
+	while(counter !== Num_Iteration && ListInput !== null)
+    {
+      	ListInput = ListInput.rest;
+     	counter++;      	
+    }
+  return ListInput.value;
 }
 
 // Problem 4: Deep comparison
-function deepEqual(obj1, obj2) {
-  // Your code here
-}
+function deepEqual(FObj,SObj)
+{
+	if(FObj === SObj) return true;
+    
+  if(FObj == null || typeof FObj !=  typeof SObj ||
+     SObj == null )
+  return false;
+    
+  var FObjProp = 0; SObjProp = 0;
+  	
+  	for(var prop in FObj)
+      FObjProp+=1;
+    
 
+  	for(var prop in SObj)
+    { 
+      SObjProp+=1;    
+      if(!(prop in FObj) || !deepEqual(FObj[prop],SObj[prop]))
+        return false; 
+    } 
+  
+    return FObjProp == SObjProp;
+}
 
 // Do not modify below here.
 module.exports = {
