@@ -52,21 +52,21 @@ function averageMomChildAgeDiff() {
  */
 function averageAgeByCentury() {
   // Your code here
-  var centuries = {};
+  var centuryName = {};
   ancestry.forEach(function(person) {
     var centuryIndex = Math.ceil(person.died / 100);
 
-    if (!(centuryIndex in centuries)) {
-      centuries[centuryIndex] = [];
+    if (!(centuryIndex in centuryName)) {
+      centuryName[centuryIndex] = [];
     }
-    centuries[centuryIndex].push(person.died - person.born);
+    centuryName[centuryIndex].push(person.died - person.born);
   });
 
-  for (var centuryIndex in centuries) {
-    centuries[centuryIndex] = Number(average(centuries[centuryIndex]));
+  for (var centuryIndex in centuryName) {
+    centuryName[centuryIndex] = Number(average(centuryName[centuryIndex]));
   }
 
-  return centuries;  
+  return centuryName;  
 }
   
 // Do not modify below here.
