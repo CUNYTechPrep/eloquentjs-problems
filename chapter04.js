@@ -18,13 +18,12 @@ function range(start, end, step=1) {
      array[x] = i;
      x++;
   }
-  }
-
-
-  for (var i = start; i <= end; i += step){
+  }else{
+    for (var i = start; i <= end; i += step){
      array[x] = i;
      x++;
   }
+}
   
   return array;
      
