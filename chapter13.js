@@ -10,6 +10,26 @@
 // Problem 1: Build table
 function buildTable(data) {
   // Your code here
+  var table = document.createElement("table");
+  var row = document.createElement("tr");
+
+  for(var property in data[0]){
+  	var header = document.createElement("th");
+  	header.textContent = property;
+  	row.appendChild(header);
+  }
+  table.appendChild(row);
+
+  for(var info in data){
+  	row = document.createElement("tr");
+  	for (var moreInfo in data[info]){
+  		var td = document.createElement("td");
+  		td.textContent = data[info][moreInfo];
+  		row.appendChild(td);
+  	}
+  	table.appendChild(row);
+  }
+  return table;
 }
 
 
