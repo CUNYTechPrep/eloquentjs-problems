@@ -8,24 +8,28 @@
 
 
 // Problem 1: The sum of a range
-function range(start, end, step=1) {
+function range(start, end, step = 1) {
   // Your code here
   var rangeArray = [];
-  var step = 1;
+  var givenStep;
+
   // Check if the step argument is given
   if (arguments.length == 3) {
-    step = arguments[2];
+    givenStep = arguments[2];
+  } else {
+    givenStep = 1;
   }
 
-  if (start >= end) {
-    step = -1;
+  if (givenStep > 0) {
+    for (var i = start; i <= end; i += givenStep) {
+      rangeArray.push(i);
+    }
+  } else {
+    for (var i = start; i >= end; i += givenStep) {
+      rangeArray.push(i);
+    }
   }
 
-  while (start != end) {
-    rangeArray.push(start);
-   	start += step;
-  }
-  rangeArray.push(end);
   return rangeArray;
 }
 
@@ -33,7 +37,7 @@ function sum(array) {
   // Your code here
   var arraySum = 0;
 
-  for (var i in array) {
+  for (var i = 0; i < array.length; ++i) {
     arraySum += array[i];
   }
   return arraySum;
@@ -92,16 +96,18 @@ function listToArray(list) {
 
 function nth(list, position) {
     // Your code here
-    if (n === 0) {
+    if (!list) {
+      return undefined;
+    } else if (position == 0) {
       return list.value;
     } else {
-      return nth(list.rest, n-1);
+      return nth(list.rest, position-1);
     }
 }
 
 function prepend(element, list) {
   // Your code here
-  return {element: value, rest: rest};
+  return {value: element, rest: list};
 }
 
 // Problem 4: Deep comparison
