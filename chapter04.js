@@ -10,43 +10,127 @@
 // Problem 1: The sum of a range
 function range(start, end, step=1) {
   // Your code here
+  var array = [];
+  var x = start;
+  if(step){
+    while(x!==end){
+      array.push(x);
+      x+=step;
+    }
+	array.push(end);
+  return array;
+  }else{
+    while(x!==end){
+      array.push(x++);
+        i++;
+    }
+  array.push(end);
+  return array;
+}
 }
 
 function sum(array) {
   // Your code here
+  var sum = 0;
+  for(var i = 0; i < array.length; i++){
+    sum+=array[i];
+  }
+  return sum;
 }
 
 // Problem 2: Reversing an Array
 function reverseArray(array) {
   // Your code here
-}
+  var arr1 = [];
+  var x = array.length-1;
+
+    for(var i = 0; i<array.length; i++){
+      arr1[i] = array[x--];
+    }
+  return arr1;
+ }
 
 function reverseArrayInPlace(array) {
   // Your code here
+ var x = array.length-1;
+  
+  for(var i = 0; i<= x; i++){
+    var y = array[i] 
+    array[i] = array[x];
+    array[x] = y;
+    x=x-1-i;
+  }
+  return array;
+    
+
 }
 
 // Problem 3: A List
 function arrayToList(array) {
   // Your code here
-}
+  var list = null;
+    for(var i = array.length-1; i>=0; i--){
+      list = {
+      value: array[i],
+      rest: list
+    };
+
+  }
+  return list;
+  }
 
 function listToArray(list) {
   // Your code here
+  var array = [];
+  var i = 0;
+
+  for (var node = list; node; node = node.rest){
+    array[i++] = (node.value);
+
+  }
+  return array;
 }
 
 function nth(list, position) {
   // Your code here
+  var x = 0;
+   for (var node = list; node; node = node.rest){
+    if(x==position){
+      return node.value;
+    }
+     else{
+       x++;
+     }
+
+  }
+
 }
 
 function prepend(element, list) {
   // Your code here
+  var list = {
+    value: element,
+    rest: list
+
+  }
+  return list;
 }
 
 // Problem 4: Deep comparison
 function deepEqual(obj1, obj2) {
   // Your code here
-}
+  if (obj1===obj2) return true;
+ if (obj1==null || typeof obj1 != "object" || obj2==null || typeof obj2 != "object"){
+   return false;
+ }
 
+ for (var key in obj2) {
+   if (!(key in obj1) || !deepEqual(obj1[key], obj2[key]))
+     return false;
+ }
+
+ return true;
+}
 
 // Do not modify below here.
 module.exports = {
