@@ -19,7 +19,7 @@ function buildTable(data) {
     element.textContent =  row;
     headRow.appendChild(element);
   });
-
+  
   table.appendChild(headRow);
 
   // Loop over the key names once to fill in the top row 

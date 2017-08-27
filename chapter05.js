@@ -21,9 +21,9 @@ ancestry.forEach(function(person) {
 // Problem 1: Flattening
 function flatten(arrays) {
   // Your code here
-  console.log(arrays.reduce(function(previous, current) {
+  return(arrays.reduce(function(previous, current) {
     return previous.concat(current);
-  }));
+  }, []));
 }
 
 // Problem 2: Mother-child age difference
@@ -43,7 +43,7 @@ function averageMomChildAgeDiff() {
     return person.born - byName[person.mother].born;
   });
 
-  return (averageMomChildAgeDiff(ageDifference));
+  return (average(ageDifference));
 }
 
 // Problem 3: Historical life expectancy
@@ -52,27 +52,23 @@ function averageMomChildAgeDiff() {
  */
 function averageAgeByCentury() {
   // Your code here
-  ancestry.forEach(function(person){
-    // A person is assigned to a century by taking their year of death, dividing it by 100, and rounding it up, as in Math.ceil(person.died / 100).
-    var century = Math.ceil(person.died / 100);
+  var centuries = {};
+  ancestry.forEach(function(person) {
+    var centuryIndex = Math.ceil(person.died / 100);
 
-    if (century in centuries) {
-      centuries[century].push(person.died - person.born);
-    } else {
-      centuries[century] = [person.died - person.born];
+    if (!(centuryIndex in centuries)) {
+      centuries[centuryIndex] = [];
     }
-  }); 
+    centuries[centuryIndex].push(person.died - person.born);
+  });
 
-  // For in loop to print the average ages for the individuals centuries
-  for (var key in centuries) {
-    centuries[key] = averageAgeByCentury(centuries[key]);
-
-    return {name: Math.ceil(person.died/100),
-          value: person.died - person.born};
+  for (var centuryIndex in centuries) {
+    centuries[centuryIndex] = Number(average(centuries[centuryIndex]));
   }
+
+  return centuries;  
 }
-
-
+  
 // Do not modify below here.
 module.exports = { flatten, averageMomChildAgeDiff, averageAgeByCentury };
 
