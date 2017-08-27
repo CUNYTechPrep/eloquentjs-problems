@@ -19,14 +19,43 @@ ancestry.forEach(function(person) {
 
 
 // Problem 1: Flattening
-function flatten(arrays) {
-  // Your code here
+function flatten(arr) {
+var newArr = arr[0];
+  arr.reduce(function(prev, curr, index, arr){
+    newArr = newArr.concat(curr);
+  });
+  return newArr;
 }
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
 function averageMomChildAgeDiff() {
-  // Your code here
+  function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+var byName = {};
+ancestry.forEach(function(person) {
+  byName[person.name] = person;
+});
+
+// Your code here.
+function map(array, transform) {
+  var mapped = [];
+  for (var i = 0; i < array.length; i++)
+    mapped.push(transform(array[i]));
+  return mapped;
+}
+
+var hasMother = ancestry.filter(function(person) {
+   if(byName[person.mother] !== null)
+     return byName[person.mother];
+}); 
+
+return average(map(hasMother, function(person) {
+  return person.born - byName[person.mother].born;
+}));
 }
 
 // Problem 3: Historical life expectancy
@@ -34,7 +63,25 @@ function averageMomChildAgeDiff() {
     for the century as the value
  */
 function averageAgeByCentury() {
-  // Your code here
+
+  function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+var perCentury = {};
+for(var k in ancestry) {
+  var person = ancestry[k];
+  var centuryBorn = String(Math.ceil(person.died/100));
+  if(! (centuryBorn in perCentury)) {
+    perCentury[centuryBorn] = [];
+  }
+  perCentury[centuryBorn].push(person.died - person.born);
+  
+ }
+  for(var k in perCentury)
+    perCentury[k] = average(perCentury[k]);
+  return perCentury;
 }
 
 
