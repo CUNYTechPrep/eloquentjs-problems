@@ -11,31 +11,32 @@
 function range(start, end, step=1) {
   // Your code here
   var array = [];
-  var x = start;
-  if(step){
-    while(x!==end){
-      array.push(x);
-      x+=step;
-    }
-	array.push(end);
+  var x = 0;
+  
+  if(step<0){
+    for (var i = start; i >= end; i += step){
+     array[x] = i;
+     x++;
+  }
+  }
+
+
+  for (var i = start; i <= end; i += step){
+     array[x] = i;
+     x++;
+  }
+  
   return array;
-  }else{
-    while(x!==end){
-      array.push(x++);
-        i++;
-    }
-  array.push(end);
-  return array;
-}
+     
 }
 
+
+
 function sum(array) {
-  // Your code here
-  var sum = 0;
-  for(var i = 0; i < array.length; i++){
-    sum+=array[i];
-  }
-  return sum;
+  var sumT = 0;
+  for (var i = 0; i < array.length; i++)
+    sumT += array[i];
+  return sumT;
 }
 
 // Problem 2: Reversing an Array
@@ -93,14 +94,11 @@ function listToArray(list) {
 
 function nth(list, position) {
   // Your code here
-  var x = 0;
-   for (var node = list; node; node = node.rest){
-    if(x==position){
-      return node.value;
-    }
-     else{
-       x++;
-     }
+
+  if (position == 0){
+    return list.value;
+  }else{
+     return nth(list.rest, position-1);
 
   }
 
