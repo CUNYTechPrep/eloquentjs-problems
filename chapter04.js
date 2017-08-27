@@ -19,26 +19,27 @@ function range(start, end, step=1) {
   }
   else if (typeof step === "number"){
     if(start > end){
-      for (var i = start; i>=end; i--){
+      for (var i = start; i>=end; i+=step){
         thisArray.push(i);
       }
     }
     else {
-    for (var i=start; i<= end; i++){
+    for (var i=start; i<= end; i+=step){
       thisArray.push(i);
     }
   }
+}
   
   return thisArray;
 }
 
 function sum(array) {
   // Your code here
-  var sum = 0;
+  var sums = 0;
   for(var i=0; i < array.length; i++){
-    sum+= array[i];
+    sums+= array[i];
   }
-  return sum;
+  return sums;
 }
 
 // Problem 2: Reversing an Array
@@ -98,8 +99,7 @@ function nth(list, position) {
        return;
     }
     else{
-      position--;
-        return nth(list.rest, position);
+        return nth(list.rest, position-1);
     }
 }
 
