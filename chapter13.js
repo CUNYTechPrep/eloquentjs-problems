@@ -9,7 +9,29 @@
 
 // Problem 1: Build table
 function buildTable(data) {
-  // Your code here
+  //Build headings
+  var myTable = document.createElement("table");
+  var headings = document.createElement("tr");
+  for(var key in data[0]){
+    var node = document.createElement("th");
+    var textNode = document.createTextNode(key);
+    node.appendChild(textNode);
+    headings.appendChild(node);
+  }
+  myTable.appendChild(headings);
+  //Build the entries
+  for(var x=0; x<data.length; ++x){
+    var entry = data[x];
+    var row = document.createElement("tr");
+    for(var key in entry){
+      var item = document.createElement("td");
+      var itemText = document.createTextNode(entry[key]);
+      item.append(itemText);
+      row.append(item);
+    }
+    myTable.append(row);
+  }
+  return myTable;
 }
 
 
