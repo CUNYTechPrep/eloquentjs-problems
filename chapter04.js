@@ -9,42 +9,105 @@
 
 // Problem 1: The sum of a range
 function range(start, end, step=1) {
-  // Your code here
+	var result = [];
+	let difference = Math.abs(end - start);
+	arrSize = Math.abs((difference + 1)/step);
+
+	if(start<end){
+		for(var i = 0; i < arrSize; i++)
+			result[i] = start + (i * step);
+	}
+
+	else if ( start > end){
+		for(var i = 0; i < arrSize; i++)
+			result[i] = start + (i * step);
+	}
+	return result;
 }
 
-function sum(array) {
-  // Your code here
+function sum(arr) {
+	var result = 0;
+	for (var i = 0; i < arr.length; i++)
+		result += arr[i];
+	return result;
 }
 
 // Problem 2: Reversing an Array
-function reverseArray(array) {
-  // Your code here
+function reverseArray(arr) {
+ 	var revArr = [];
+	for(var i = 0; i < arr.length; i++)
+		revArr[i] = arr[arr.length - i -1];
+	return revArr;
 }
 
-function reverseArrayInPlace(array) {
-  // Your code here
+function reverseArrayInPlace(arr) {
+  	for(var i = 0; i < arr.length/2; i++){
+		var temp = arr[i];
+		arr[i] = arr[arr.length-i-1];
+		arr[arr.length-i-1] = temp
+	}
 }
 
 // Problem 3: A List
-function arrayToList(array) {
-  // Your code here
+function arrayToList(arr) {
+  	var list = {};
+    let prevList = null;
+	for(var i = arr.length-1; i >-1;i--){
+		list = {
+			value : arr[i],
+			rest : prevList
+		};
+        prevList = list;
+      console.log(arr[i]);
+	}
+	return list;
 }
 
 function listToArray(list) {
-  // Your code here
+	var arr = [];
+	for(var node = list; node; node = node.rest){
+		arr.push(node.value);
+	}
+	return arr;
 }
 
-function nth(list, position) {
-  // Your code here
+function nth(list, pos) {
+	var i = 0;
+	var result;
+	for (var node = list; node; node = node.rest){
+		if(i===pos)
+			result = node.value;
+		i++;
+	}
+	return result;
 }
 
 function prepend(element, list) {
-  // Your code here
+	var newList = {
+		value: element,
+		rest: list
+	};
+	return newList;
 }
 
 // Problem 4: Deep comparison
 function deepEqual(obj1, obj2) {
-  // Your code here
+   if(typeof obj1 === typeof obj2){
+   	if(typeof obj1 == "object"){
+    	for (var elt in obj1){
+          	/*console.log(elt);
+            console.log(obj1[elt]);
+            console.log(obj2[elt]);*/
+    		return deepEqual(obj1[elt], obj2[elt]);
+    	}
+    }
+  	else if (obj1 === obj2)
+      return true;
+    else
+      return false;
+  }
+  else
+    return false; // Your code here
 }
 
 
