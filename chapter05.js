@@ -54,14 +54,10 @@ ancestry.forEach(p  => {
 
 var obj = {}; 
     for (c in cent) {
-    obj.c = average(cent[c]);
-    console.log(c, "->", average(cent[c]));
+    obj[c] = average(cent[c]);
 }
 return obj;
 }
-//The comments above state to return an object but the test
-//throws out an error: value must be a number. code does work
-//with the online editor through http://eloquentjavascript.net
 
 // Do not modify below here.
 module.exports = { flatten, averageMomChildAgeDiff, averageAgeByCentury };
