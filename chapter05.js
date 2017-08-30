@@ -1,4 +1,4 @@
-/*
+x/*
  * Add your solutions to the chapter 5 problems from the eloquentjs book.
  *    - DO NOT rename the functions below.
  *    - You may add other functions if you need them.
@@ -20,7 +20,9 @@ ancestry.forEach(function(person) {
 
 // Problem 1: Flattening
 function flatten(arrays) {
-  // Your code here
+  console.log(arrays.reduce(function(flat, current) {
+    return flat.concat(current);
+  }, []));
 }
 
 // Problem 2: Mother-child age difference
