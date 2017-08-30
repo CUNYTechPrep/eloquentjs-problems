@@ -9,42 +9,123 @@
 
 // Problem 1: The sum of a range
 function range(start, end, step=1) {
-  // Your code here
+    var result = [];
+    
+    if (step == undefined) {
+        step = 1;
+    }
+    
+    // condition where we get infinite loops, so we return empty array
+    if ((start > end && step > 0) || (start < end && step < 0)  || (start === end)) return result;
+    
+    if (start < end) {
+        for (var i = start; i < end+1; i+=step) {
+            result.push(i);
+        }
+    } else {
+        for (var i = start; i > end-1; i+=step) {
+            result.push(i);
+        }
+    }
+    
+    
+    return result;
 }
 
 function sum(array) {
-  // Your code here
+    var result = 0;
+    
+    for (var i = 0; i < array.length; i++) {
+        result += array[i];
+    }
+    
+    return result;
 }
 
 // Problem 2: Reversing an Array
 function reverseArray(array) {
-  // Your code here
+    var newArray = [];
+    
+    for (var i = array.length-1; i >= 0; i--) {
+        newArray.push(array[i]);
+    }
+    
+    return newArray;
 }
 
 function reverseArrayInPlace(array) {
-  // Your code here
+    var size = array.length;
+    var mid = Math.floor(size/2);
+    var tmp;
+    
+    for (var i = 0; i < mid; i++) {
+        tmp = array[i];
+        array[i] = array[size - 1 - i];
+        array[size - 1 - i] = tmp;
+    }
+    
+    return array;
 }
 
 // Problem 3: A List
 function arrayToList(array) {
-  // Your code here
+    var list = null;
+    
+    for (var i = array.length-1; i >= 0; i--) {
+        list = prepend(array[i], list);
+    }
+    
+    return list;
 }
 
 function listToArray(list) {
-  // Your code here
+    var array = [];
+    var nodeRef = list;
+    
+    while (nodeRef !== null) {
+        array.push(nodeRef.value);
+        nodeRef = nodeRef.rest;
+    }
+    
+    return array;
 }
 
 function nth(list, position) {
-  // Your code here
+    var nodeRef = list;
+    
+    if (position < 0) return undefined;
+    
+    for (var i = 0; i < position; i ++) {
+        if (nodeRef === null) return undefined;
+        nodeRef = nodeRef.rest;
+    }
+    
+    if (nodeRef === null) return undefined;
+    return nodeRef.value;
 }
 
 function prepend(element, list) {
-  // Your code here
+    var newList = {};
+    
+    newList.value = element;
+    newList.rest = list;
+    
+    return newList;
 }
 
 // Problem 4: Deep comparison
 function deepEqual(obj1, obj2) {
-  // Your code here
+    for (var prop1 in obj1) {
+        for (var prop2 in obj2) {
+            if (prop1 == prop2) {
+              if (typeof obj1[prop1] == 'object' && typeof obj2[prop2] == 'object') {
+                    return deepEqual(obj1[prop1], obj2[prop2]);
+              } else {
+                    return obj1[prop1] === obj2[prop2];
+              }
+            }
+        }
+    }
 }
 
 
