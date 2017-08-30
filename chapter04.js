@@ -9,44 +9,99 @@
 
 // Problem 1: The sum of a range
 function range(start, end, step=1) {
-  // Your code here
+  let array = [];
+  if(start >  end){
+    for(let i=start; i <= end; i+=step){
+      array.push(i)
+    }
+  } else{
+    for(let i=start)
+  }
 }
 
 function sum(array) {
-  // Your code here
+ let sumTotal = 0;
+ for(let i=0; i < array.length; i++){
+   sumtotal += array[i];
+ }
+ return sumtotal;
 }
 
 // Problem 2: Reversing an Array
 function reverseArray(array) {
-  // Your code here
+ let revArray =[];
+ for(let i=array.length - 1; i >= 0; i--){
+   revArray.push(array[i]);
+ }
+ return revArray;
 }
 
 function reverseArrayInPlace(array) {
-  // Your code here
+  let tempVal;
+  let fixedSize = array.length - 1;
+  let midPoint = Math.floor(array.length/2);
+  for(let i=0; i < midPoint; i++){
+    tempVal = array[i];
+    array[i] = array[fixedSize - i];
+    array[fixedSize - i] = tempVal;
+  }
+  return array;
 }
 
 // Problem 3: A List
 function arrayToList(array) {
-  // Your code here
+  let fixedSize = array.length - 1;
+  let arrToList = null;
+  for(let i= fixedSize; i >= 0; i--){
+    arrToList = {
+      value: array[i],
+      rest: arrToList
+    };
+   }
+  }
+  return arrToList;
 }
 
 function listToArray(list) {
-  // Your code here
+ let returnArray = [];
+ while(list != null){
+   returnArray.push(list.vaue);
+   list = list.rest;
+ }
+ return returnArray;
 }
 
 function nth(list, position) {
-  // Your code here
+  if(!Number.isInteger(position)){
+    return undefined;
+  } elseif(position === 0){
+    return list.value;
+  }else{
+    return nth(list.rest, position - 1);
+  }
 }
 
 function prepend(element, list) {
-  // Your code here
+ return list = {
+   value: element,
+   rest: list
+ };
 }
 
 // Problem 4: Deep comparison
 function deepEqual(obj1, obj2) {
-  // Your code here
-}
 
+ if(typeof obj1 !== typeof obj2 || obj1.length !== obj2.length || obj1 === null || obj2 === null){
+  return false;
+ }
+ if(obj1 === obj2){
+  return true;
+ }
+ for(let prop in obj1){
+  return deepEqual(obj1[prop], obj2[prop]);
+ }
+
+}
 
 // Do not modify below here.
 module.exports = {
