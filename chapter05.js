@@ -21,12 +21,20 @@ ancestry.forEach(function(person) {
 // Problem 1: Flattening
 function flatten(arrays) {
   // Your code here
+  var newArr = arrays.reduce(function(startArr, currArr){
+    	return startArr.concat(currArr);
+  });
 }
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
 function averageMomChildAgeDiff() {
   // Your code here
+  function mother(p) { return byName[p.mother] != null; };
+
+  var ageDiff = ancestry.filter(mother).map(function(p) {
+    return p.born - byName[p.mother].born;
+  });
 }
 
 // Problem 3: Historical life expectancy
@@ -40,4 +48,3 @@ function averageAgeByCentury() {
 
 // Do not modify below here.
 module.exports = { flatten, averageMomChildAgeDiff, averageAgeByCentury };
-
