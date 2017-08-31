@@ -1,4 +1,4 @@
-/*
+x/*
  * Add your solutions to the chapter 5 problems from the eloquentjs book.
  *    - DO NOT rename the functions below.
  *    - You may add other functions if you need them.
@@ -20,13 +20,22 @@ ancestry.forEach(function(person) {
 
 // Problem 1: Flattening
 function flatten(arrays) {
-  // Your code here
+  console.log(arrays.reduce(function(flat, current) {
+    return flat.concat(current);
+  }, []));
 }
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
 function averageMomChildAgeDiff() {
-  // Your code here
+  // Only get values for mother
+  var array = ancestry.filter(function(person) {
+    return byName[person.mother] != null;
+  // Get the birth date of the current array value
+  // Subtract that value from the birthdate of the mother from byName
+  }).map(function(person) {
+    return person.born - byName[person.mother].born;
+  });
 }
 
 // Problem 3: Historical life expectancy
@@ -34,7 +43,27 @@ function averageMomChildAgeDiff() {
     for the century as the value
  */
 function averageAgeByCentury() {
-  // Your code here
+  var centuries = {};
+  // Map through values of an array 'a'
+  a.map(function (person) {
+
+    // Century of death
+    var century = Math.ceil(person.died / 100);
+    // Age when died
+    var age = person.died - person.born;
+    // Check if century value doesn't exist yet
+    if (!(century in centuries)) {
+      // Insert the century, make it an array of the age
+      centuries[century] = [age];
+    } else {
+      // Otherwise, add the current age
+      centuries[century].push(age);
+    }
+  });
+  
+  for (var key in centuries) {
+    console.log(key + ': ' + average(centuries[key]).toFixed(3));
+  }
 }
 
 
