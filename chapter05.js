@@ -20,14 +20,23 @@ ancestry.forEach(function(person) {
 
 // Problem 1: Flattening
 function flatten(arrays) {
-  // Your code here
-}
+  arr.reduce(function(curr, next){return curr.concat(next)});
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
-function averageMomChildAgeDiff() {
-  // Your code here
+var byName = {};
+ancestry.forEach(function(person) {
+  byName[person.name] = person;
+});
+
+function hadKnownMother(person){
+	return person.mother in byName;
 }
+
+function averageMomChildAgeDiff() {
+  return person.born - byName[person.mother].born;
+}
+
 
 // Problem 3: Historical life expectancy
 /* This must return the object/map with centuries as keys and average age
