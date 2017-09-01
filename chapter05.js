@@ -27,6 +27,17 @@ function flatten(arrays) {
 /* This must return the average age difference instead of printing it */
 function averageMomChildAgeDiff() {
   // Your code here
+    function difference(person) {
+    if(byName[person.mother]) {
+      return person.born - byName[person.mother].born }
+    else return null }
+
+  function notNull(age) {
+    if (age != null)
+      return age
+      }
+
+  return average(ancestry.map(difference).filter(notNull)))
 }
 
 // Problem 3: Historical life expectancy
