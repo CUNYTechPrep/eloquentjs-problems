@@ -17,16 +17,24 @@ ancestry.forEach(function(person) {
   byName[person.name] = person;
 });
 
-
 // Problem 1: Flattening
 function flatten(arrays) {
-  // Your code here
+  return arrays.reduce( (a, b) => {return a.concat(b); }, []); 
 }
 
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
+
 function averageMomChildAgeDiff() {
-  // Your code here
+  let ageDifferences = [];
+  let filteredAncestry = ancestry.filter( (person) => {return byName[person.mother] != null ? true : false;} );
+  filteredAncestry.forEach( (person) => {
+    let birth = person.born;
+    let motherDOB = byName[person.mother].born;
+    let ageDiff = birth - motherDOB;
+    ageDifferences.push(ageDiff); 
+  });
+  return average(ageDifferences);
 }
 
 // Problem 3: Historical life expectancy
@@ -34,8 +42,22 @@ function averageMomChildAgeDiff() {
     for the century as the value
  */
 function averageAgeByCentury() {
-  // Your code here
+  averageAges = {};
+  ancestry.forEach((person) => {
+    let century = Math.ceil(person.died / 100);
+    let age = person.died - person.born;
+    if (!averageAges.hasOwnProperty(century)) {
+      averageAges[century] = [age];
+    } else {
+      averageAges[century].push(age);
+    }
+  });
+  Object.keys(averageAges).forEach( (century) => { averageAges[century] = average(averageAges[century]); } )
+  return averageAges;
 }
+
+
+
 
 
 // Do not modify below here.
