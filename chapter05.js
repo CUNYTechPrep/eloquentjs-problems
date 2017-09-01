@@ -20,7 +20,13 @@ ancestry.forEach(function(person) {
 
 // Problem 1: Flattening
 function flatten(arrays) {
-  // Your code here
+	var arrays = [[1, 2, 3], [4, 5], [6]];
+	console.log(arrays.reduce(function(prev, curr) {
+
+  return prev.concat(curr);
+}, ));
+
+// → [1, 2, 3, 4, 5, 6]
 }
 
 // Problem 2: Mother-child age difference
@@ -33,11 +39,37 @@ function averageMomChildAgeDiff() {
 /* This must return the object/map with centuries as keys and average age
     for the century as the value
  */
-function averageAgeByCentury() {
-  // Your code here
+function averageAgeByCentury(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+function groupBy(array, groupOf) {
+  var groups = {};
+  array.forEach(function(element) {
+    var groupName = groupOf(element);
+    if (groupName in groups)
+      groups[groupName].push(element);
+    else
+      groups[groupName] = [element];
+  });
+  return groups;
+}
+
+var byCentury = groupBy(ancestry, function(person) {
+  return Math.ceil(person.died / 100);
+});
+
+for (var century in byCentury) {
+  var ages = byCentury[century].map(function(person) {
+    return person.died - person.born;
+  });
+  console.log(century + ": " + averageAgeByCentury(ages));
+}
+
+
 }
 
 
 // Do not modify below here.
 module.exports = { flatten, averageMomChildAgeDiff, averageAgeByCentury };
-
