@@ -47,6 +47,8 @@ console.log(sum(range(1, 10)));
 
 }
 
+
+
 // Problem 2: Reversing an Array
 function reverseArray(array) {
   var newArray = [];
@@ -72,6 +74,7 @@ var arrayValue = [1, 2, 3, 4, 5];
 reverseArrayInPlace(arrayValue);
 console.log(arrayValue);
 // → [5, 4, 3, 2, 1]
+
 
 
 // Problem 3: A List
@@ -117,6 +120,7 @@ console.log(prepend(10, prepend(20, null)));
 
 console.log(nth(arrayToList([10, 20, 30]), 1));
 // → 20
+
 
 
 // Problem 4: Deep comparison
