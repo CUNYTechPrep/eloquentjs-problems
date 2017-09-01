@@ -1,5 +1,5 @@
 /*
- * Add your solutions to the chapter 5 problems from the eloquentjs book.
+ * Add your solutions to the chapter 4 problems from the eloquentjs book.
  *    - DO NOT rename the functions below.
  *    - You may add other functions if you need them.
  *    - You may rename the parameters.
@@ -48,16 +48,6 @@ console.log(sum(range(1, 10)));
 
 }
 
-
-
-
-
-
-
-
-
-
-
 // Problem 2: Reversing an Array
 function reverseArray(array) {
   var newArray = [];
@@ -83,11 +73,6 @@ var arrayValue = [1, 2, 3, 4, 5];
 reverseArrayInPlace(arrayValue);
 console.log(arrayValue);
 // → [5, 4, 3, 2, 1]
-
-
-
-
-
 
 
 // Problem 3: A List
@@ -122,7 +107,6 @@ function prepend (element, list) {
   return list;
 }
 
-
 console.log(arrayToList([10, 20]));
 // → {value: 10, rest: {value: 20, rest: null}}
 
@@ -134,12 +118,6 @@ console.log(prepend(10, prepend(20, null)));
 
 console.log(nth(arrayToList([10, 20, 30]), 1));
 // → 20
-
-
-
-
-
-
 
 
 // Problem 4: Deep comparison
