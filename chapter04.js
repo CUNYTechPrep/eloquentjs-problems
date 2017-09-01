@@ -7,7 +7,6 @@
  */
 
 // Problem 1: The sum of a range
-
 function range(start, end, step=1) {
   var array = [];
   if (arguments.length === 3) { //if 3rd argument is entered 
