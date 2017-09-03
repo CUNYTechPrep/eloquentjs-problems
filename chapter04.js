@@ -9,42 +9,127 @@
 
 // Problem 1: The sum of a range
 function range(start, end, step=1) {
-  // Your code here
+  var array = [];
+  var start_cpy = start;
+
+  for(var i=0; i<=(end-start); i=i+step){
+    array[i] = start_cpy;
+    start_cpy = start_cpy+1;
+  }
+  return array;
 }
 
 function sum(array) {
-  // Your code here
+  var sum = 0;
+  var old_sum = 0;
+  for(var i=0; i<range_array.length; i++){ //is there another way to cycle through elements of an array in javascript?
+    sum = range_array[i] + old_sum;
+    old_sum = range_array[i];
+  }
+  return sum;
 }
 
 // Problem 2: Reversing an Array
 function reverseArray(array) {
-  // Your code here
+  var temp_array = [];
+  for(var i=0; i<array.length; i++){
+    temp_array[(array.length)-1-i] = array[i];
+  }
+  return temp_array;
 }
 
 function reverseArrayInPlace(array) {
-  // Your code here
+  var temp;
+  for(var i=0; i<array.length; i++){
+    temp = array[i];
+    array[i] = array[(array.length)-1-i];
+  }
+  return array;
 }
 
 // Problem 3: A List
+
+/*
+List (as in linked list in C++)
+
+Objects, as generic blobs of values, can be used to build all sorts of data
+structures. A common data structure is the list (not to be confused with
+the array). A list is a nested set of objects, with the first object holding
+a reference to the second, the second to the third, and so on.
+
+var list = {
+    value : 1 ,
+    rest : {
+        value : 2,
+        rest : {
+            value : 3,
+            rest : null
+        }
+    }
+};
+*/
+
 function arrayToList(array) {
-  // Your code here
+  if(array.length === 0){
+    return null;
+  }
+
+  return{
+    value: array.shift();
+    rest: arrayToList(array);
+  }
 }
 
 function listToArray(list) {
-  // Your code here
+  var array;
+  var i = 0;
+  while(list.value != null){
+    array[i] = list.value;
+    i++;
+    list = list.rest;
+  }
+  return array;
 }
 
 function nth(list, position) {
-  // Your code here
+  if(list.value === number){
+    return true;
+  }
+  else if(list.value === null){
+    return false;
+  }
+  else{
+    return nth(number,list.rest);
+  }
 }
 
 function prepend(element, list) {
-  // Your code here
+  return{
+    value: element;
+    rest: list;
+  }
 }
 
 // Problem 4: Deep comparison
 function deepEqual(obj1, obj2) {
-  // Your code here
+  if( (typeof obj1 === typeof obj2) && typeof obj1 != "object" ){
+    if(obj1===obj2)return true;
+    else return false;
+  }
+
+  else if((typeof obj1 === typeof obj2) && typeof obj1 === object){
+    var obj1_keys = Object.keys(obj1);
+    var obj2_keys = Object.keys(obj2);
+
+    //testing to see if they have the same keys
+    for(var i=0; i<obj1_keys.length; i++){
+      var key_1 = obj1_keys[i];
+      var key_2 = obj2_keys[i];
+      if(obj1_keys[i]!=obj2_keys[i]) return false;
+      if(obj1[key_1]!=obj2[key_2]) return false;
+    }
+    return true;
+  }
 }
 
 
