@@ -112,7 +112,24 @@ function prepend(element, list) {
 
 // Problem 4: Deep comparison
 function deepEqual(obj1, obj2) {
-  // Your code here
+  if( (typeof obj1 === typeof obj2) && typeof obj1 != "object" ){
+    if(obj1===obj2)return true;
+    else return false;
+  }
+
+  else if((typeof obj1 === typeof obj2) && typeof obj1 === object){
+    var obj1_keys = Object.keys(obj1);
+    var obj2_keys = Object.keys(obj2);
+
+    //testing to see if they have the same keys
+    for(var i=0; i<obj1_keys.length; i++){
+      var key_1 = obj1_keys[i];
+      var key_2 = obj2_keys[i];
+      if(obj1_keys[i]!=obj2_keys[i]) return false;
+      if(obj1[key_1]!=obj2[key_2]) return false;
+    }
+    return true;
+  }
 }
 
 
