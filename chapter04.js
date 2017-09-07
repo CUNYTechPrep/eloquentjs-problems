@@ -12,40 +12,40 @@ function range(start, end, step=1) {
     if (step == 0) {
         step = 1;
     }
-    var arr = [];
+    let arr = [];
     if (step >=1) {
-        for(var i=start; i<=end; i+=step)
+        for(let i=start; i<=end; i+=step)
             arr.push(i);
     }
     else {
-        for(var i=start; i>=end; i+=step)
+        for(let i=start; i>=end; i+=step)
             arr.push(i);
     }
     return arr;
 }
 
 function sum(array) {
-    var sum = 0;
-    for(var i=0; i<array.length; i++)
+    let sum = 0;
+    for(let i=0; i<array.length; i++)
         sum += array[i]
     return sum;
 }
 
 // Problem 2: Reversing an Array
 function reverseArray(array) {
-    var reversed = [];
-    var last = array.length - 1
-    for(var i = last; i >= 0; i--) { 
+    let reversed = [];
+    let last = array.length - 1
+    for(let i = last; i >= 0; i--) { 
         reversed.push(array[i]);
     }
     return reversed;
 }
 
 function reverseArrayInPlace(array) {
-    var mid = array.length / 2;
-    for(var i=0; i<=mid; i++){
-        var temp = array[i];
-        var opp_index = array.length-1-i;
+    let mid = array.length / 2;
+    for(let i=0; i<=mid; i++){
+        let temp = array[i];
+        let opp_index = array.length-1-i;
         array[i] = array[opp_index];
         array[opp_index] = temp;
     }
@@ -54,24 +54,24 @@ function reverseArrayInPlace(array) {
 
 // Problem 3: A List
 function arrayToList(array) {
-    var list = null;
-    for(var i=array.length-1; i>=0; i--){
+    let list = null;
+    for(let i=array.length-1; i>=0; i--){
         list = prepend(array[i], list)
     }
     return list;
 }
 
 function listToArray(list) {
-    var arr = [];
-    for(var node=list; node; node=node.rest) {
+    let arr = [];
+    for(let node=list; node; node=node.rest) {
         arr.push(node.value);
     }
     return arr;
 }
 
 function nth(list, position) {
-    var count = 0;
-    for(var node=list; node; node=node.rest) {
+    let count = 0;
+    for(let node=list; node; node=node.rest) {
         if(count == position)
             return node.value;
         count ++;
@@ -80,7 +80,7 @@ function nth(list, position) {
 }
 
 function prepend(element, list) {
-    var new_list = {
+    let new_list = {
         'value': element,
         'rest': list
     }
