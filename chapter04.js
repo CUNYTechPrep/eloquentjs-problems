@@ -30,7 +30,7 @@ function sum(arr){
   return sum;
 }
 
-// Pr(blem 2: Reversing an Array
+// Problem 2: Reversing an Array
 function reverseArray(arr) {
   var rev = [];
   for(i=0;i<arr.length;i++){
@@ -55,14 +55,21 @@ function reverseArrayInPlace(arrayValue) {
 function arrayToList(arr, fob){
   if(arr.length == 0)
     return fob;
+  //test wants null rather than undefined
+  if (typeof fob == 'undefined'){ 
   var list = {
     value: arr.pop(),
+    rest: null
+  }}
+  else
+  	var list = {
+    value: arr.pop(),
     rest: fob
-  }
+    }
   return arrayToList(arr,list);}
 
 function listToArray(fob, arr){
-  if(typeof fob == 'undefined'){
+  if(typeof fob == 'undefined' | fob == null){
     return arr;
   }
   if(typeof arr == 'undefined'){
@@ -72,11 +79,11 @@ function listToArray(fob, arr){
   return listToArray(fob.rest,arr);
 }
 
-function nth(x, fob){
-  if(x==1)
-    return fob;
+function nth(fob, x){
+  if(x==0)
+    return fob.value;
   else
-    return nth(x-1,fob.rest);
+    return nth(fob.rest, x-1);
 }
 
 function prepend(x, fob){
