@@ -20,7 +20,10 @@ ancestry.forEach(function(person) {
 
 // Problem 1: Flattening
 function flatten(arrays) {
-  // Your code here
+  arrays = arrays.reduce(function(item1, item2){
+    return item1.concat(item2);
+  });
+  return arrays;
 }
 
 // Problem 2: Mother-child age difference
@@ -40,4 +43,3 @@ function averageAgeByCentury() {
 
 // Do not modify below here.
 module.exports = { flatten, averageMomChildAgeDiff, averageAgeByCentury };
-

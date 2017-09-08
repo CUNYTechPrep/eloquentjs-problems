@@ -9,42 +9,96 @@
 
 // Problem 1: The sum of a range
 function range(start, end, step=1) {
-  // Your code here
+  let arr = [];
+  if ( step > 0){
+    for (let i= start; i <= end; i += step)
+      arr.push(i);
+  }
+
+  else{
+    for (let i = start; i>= end; i += step)
+      arr.push(i);
+  }
+  return arr;
 }
 
 function sum(array) {
-  // Your code here
+  let sum = 0;
+  for (let x = 0; x < array.length; x++){
+    sum += array[x];
+  }
+  return sum;
 }
 
 // Problem 2: Reversing an Array
 function reverseArray(array) {
-  // Your code here
+  let arr =[];
+  for (let i = array.length - 1; i >= 0; i--){
+    arr.push(array[i]);
+  }
+  return arr;
 }
 
 function reverseArrayInPlace(array) {
-  // Your code here
+  for (let i = 0; i <= Math.floor(array.length/2) -1; i++){
+    let temp = array[i];
+    let target = array.length- i -1;
+    array[i] = array[target];
+    array[target] = temp;
+  }
 }
 
 // Problem 3: A List
 function arrayToList(array) {
   // Your code here
+  let List = {
+    value: array[0],
+    rest: null
+  };
+
+  let current = List;
+  for(let i = 1; i < array.length; i++){
+    current.rest = {value: array[i], rest: null};
+    current = current.rest;
+  }
+
+  return List;
+
 }
 
 function listToArray(list) {
-  // Your code here
+  let arr = [];
+  for(let current = list; current; current = current.rest){
+    arr.push(current.value);
+  }
+  return arr;
 }
 
 function nth(list, position) {
-  // Your code here
+  let count = 0;
+  for (current = list; current; current = current.rest){
+    if (count === position)
+      return current.value;
+    count++;
+  }
+  return undefined;
 }
 
 function prepend(element, list) {
-  // Your code here
+  let newlist = {value: element, rest: list};
+  return newlist;
 }
 
 // Problem 4: Deep comparison
 function deepEqual(obj1, obj2) {
-  // Your code here
+  for (let property in obj1){
+    if (obj1.property != obj2.property) return false;
+  }
+
+  for (let property in obj2){
+    if (obj1.property != obj2.property) return false;
+  }
+  return true;
 }
 
 
