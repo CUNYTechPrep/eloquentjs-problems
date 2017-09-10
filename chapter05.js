@@ -7,11 +7,34 @@
  */
 const ancestry = require('./ancestry');
 
+// The following are helper functions for Problem 3: Historical Life Expectancy
 function average(array) {
   function plus(a, b) { return a + b; }
   return array.reduce(plus) / array.length;
 }
 
+function century (person){
+  return Math.ceil(person.died / 100);
+}
+
+function age (person){
+  return person.died - person.born;
+}
+
+function groupBy(arr){
+  accumulator = {};
+  arr.forEach(person => {
+    if (century(person) in accumulator){
+      	(accumulator[century(person)]).push(person);
+  	}
+  	else {
+    	accumulator[century(person)] = [person];
+  	}
+  });
+  return accumulator;
+}
+
+// The following is a helper function for Problem 2: Mother-child age difference
 const byName = {};
 ancestry.forEach(function(person) {
   byName[person.name] = person;
@@ -28,7 +51,13 @@ function flatten(arrays) {
 // Problem 2: Mother-child age difference
 /* This must return the average age difference instead of printing it */
 function averageMomChildAgeDiff() {
-  // Your code here
+  result = [];
+  ancestry.forEach(person => {
+    if(person.mother in byName){
+      result.push(person.born - byName[person.mother]['born']);
+    }
+  });
+  return average(result);
 }
 
 // Problem 3: Historical life expectancy
@@ -36,7 +65,12 @@ function averageMomChildAgeDiff() {
     for the century as the value
  */
 function averageAgeByCentury() {
-  // Your code here
+  result = groupBy(ancestry);
+  output = {};
+  for (let group in result){
+    output[group] = (average(result[group].map(age)));
+  }
+  return output;
 }
 
 

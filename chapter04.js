@@ -118,16 +118,15 @@ function deepEqual(obj1, obj2) {
   if ((obj1 === null || typeof obj1 !== 'object') && (obj2 === null || typeof obj2 !== 'object')){
     return (obj1 === obj2);
   }
+  
+  // if the code goes here, that means both arguments are objects
   else {
-    if (obj1 !== obj2){
-        return true;
-    }
-    for (let property in obj1){
-        if (property in obj2){
-            return deepEqual(obj1[property], obj2[property]);
-        }
-        else {
-            return false;
+    for(let property in obj1){
+      if (typeof obj2 === 'object' && property in obj2){
+        return deepEqual(obj1[property], obj2[property]);
+      }
+      else{
+       return false;
       }
     }
   }

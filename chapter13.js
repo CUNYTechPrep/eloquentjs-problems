@@ -32,7 +32,6 @@ function buildTable(data) {
   */
   
   data.forEach(record => {
-    console.log(record);
     tableRow = document.createElement('tr');
     for (let keys in record){
       tableData = document.createElement('td');
