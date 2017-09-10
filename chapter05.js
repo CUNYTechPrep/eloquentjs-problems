@@ -20,7 +20,9 @@ ancestry.forEach(function(person) {
 
 // Problem 1: Flattening
 function flatten(arrays) {
-  // Your code here
+  return arrays.reduce(function(a, b){
+    return a.concat(b);
+  })
 }
 
 // Problem 2: Mother-child age difference
