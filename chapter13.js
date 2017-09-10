@@ -10,6 +10,7 @@
 // Problem 1: Build table
 function buildTable(data) {
   // Your code here
+  
 }
 
 
