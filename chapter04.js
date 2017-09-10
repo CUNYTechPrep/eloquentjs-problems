@@ -9,42 +9,127 @@
 
 // Problem 1: The sum of a range
 function range(start, end, step=1) {
-  // Your code here
+  var array = [];
+  
+  if (start > end){
+    for (let i = start; i >= end; i += step){
+        array.push(i);
+    }
+  }
+  else{
+    for (let i = start; i <= end; i += step){
+        array.push(i);
+    }
+  }
+  return array;
 }
 
 function sum(array) {
-  // Your code here
+  var total = 0;
+  for (i = 0; i < array.length; i++) {
+      total += array[i];
+  }
+  return total;
 }
 
 // Problem 2: Reversing an Array
 function reverseArray(array) {
-  // Your code here
+  if (array.length === 0 || array.length === 1) {
+    return array;
+  }
+  else {
+    var reversedArray = [];
+    for (i = array.length - 1; i >= 0; i--) {
+        reversedArray.push(array[i]);
+    }
+    return reversedArray;
+  }
 }
 
 function reverseArrayInPlace(array) {
-  // Your code here
+  if (array.length === 0 || array.length === 1) {
+    return array;
+  } 
+  else {
+    var swap;
+    for (j = 0; j < array.length / 2; j++) {
+        swap = array[j];
+        array[j] = array[array.length - 1 - j];
+        array[array.length - 1 - j] = swap;
+    }
+  }
+  return array;
 }
 
 // Problem 3: A List
 function arrayToList(array) {
-  // Your code here
+  let output = {};
+  ref = output;
+  
+  if (array.length === 0){
+      ref.value = undefined;
+      ref.rest = null;
+  }
+  
+  for (i = 0; i < array.length; i++){
+      ref.value = array[i];
+      if (i === array.length - 1){
+          ref.rest = null;
+      }
+      else{
+          ref.rest = {};
+      }
+      ref = ref.rest;
+  }
+  return output;
 }
 
 function listToArray(list) {
-  // Your code here
+  result = [];
+  current = list;
+  while (current !== null){
+      result.push(current.value);
+      current = current.rest;
+  }
+  return result;
 }
 
 function nth(list, position) {
-  // Your code here
+  currentPosition = 0;
+  currentList = list;
+  
+  while (currentList.rest !== null && currentPosition < position){
+      // console.log(currentList.value);
+      currentList = currentList.rest;
+      currentPosition++;
+  }
+  return currentList.value;
 }
 
 function prepend(element, list) {
-  // Your code here
+  return {
+    value: element,
+    rest: list
+  }
 }
 
 // Problem 4: Deep comparison
 function deepEqual(obj1, obj2) {
-  // Your code here
+  if ((obj1 === null || typeof obj1 !== 'object') && (obj2 === null || typeof obj2 !== 'object')){
+    return (obj1 === obj2);
+  }
+  
+  // if the code goes here, that means both arguments are objects
+  else {
+    for(let property in obj1){
+      if (typeof obj2 === 'object' && property in obj2){
+        return deepEqual(obj1[property], obj2[property]);
+      }
+      else{
+       return false;
+      }
+    }
+  }
 }
 
 
